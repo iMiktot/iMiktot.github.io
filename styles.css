@@ -60,7 +60,7 @@ body {
 }
 
 .header_inner {
-	margin: 0 10% 0 10%;
+	margin: 0 30% 0 10%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
