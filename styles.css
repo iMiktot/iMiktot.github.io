@@ -34,11 +34,13 @@ a {
 }
 
 body {
-
+	min-height: 100vh;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
 	line-height: 1.6;
+	display: table-cell;
+    	vertical-align: middle;
 
 }
 
