@@ -39,9 +39,7 @@ body {
 	background-position: center center;
 	background-size: cover;
 	line-height: 1.6;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
 }
 
 .container {
@@ -71,7 +69,7 @@ main {
 	max-width: 1360;
 	margin-left: 10%;
 	margin-right: 10%;
-	display: table-cell;
+	display: flex;
 	vertical-align: middle;
 
 }
