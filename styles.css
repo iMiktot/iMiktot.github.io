@@ -748,7 +748,17 @@ main .btn_blue_sec div{
   .dish-card-about p {
     font-size: 1rem;
   }
+  .blue_image {
+	height: 200px;
+	background-size: cover;
+	background-position: center;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	transition: transform 0.3s;
+}	
+	
 }
+
 @media (max-width: 480px) {
   .nav-list {
     flex-direction: column;
