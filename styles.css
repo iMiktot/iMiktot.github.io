@@ -684,7 +684,10 @@ main .btn_blue_sec div{
   }
 
   .blue-item h4 {
-    font-size: 1rem;
+    padding: 3rch 3rem 3rch 3rem ;
+    margin-bottom: 5rem;
+    font-size: 2rem;
+    font-family: 'Century-Gothic';
   }
 }
 /* Адаптация для мобильных устройств */
