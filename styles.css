@@ -577,19 +577,6 @@ main .btn_blue_sec div{
 	color: var(--light-color);
 }
 /* ______ */
-/* .social-links a {
-  text-align: center;
-	font-style: normal;
-  color: white;
-  font-size: 1.25rem;
-  transition: color 0.3s;
-	font-family: 'Century-Gothic-bold';
-}
-
-.social-links a:hover {
-	font-style: normal;
-  color: var(--accent-color);
-} */
 
 @media (max-width: 992px) {
   .banner-content {
@@ -691,10 +678,13 @@ main .btn_blue_sec div{
 	font-size: 1rem;
   }
 
-	
   .dish-card-about p {
 	max-width: 15rem;
 	font-size: 1rem;
+  }
+
+  .blue-item h4 {
+    font-size: 1rem;
   }
 }
 /* Адаптация для мобильных устройств */
