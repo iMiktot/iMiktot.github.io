@@ -621,6 +621,12 @@ main .btn_blue_sec div{
 	max-width: 20rem;
 	font-size: 1rem;
   }
+  .blue-item h4 {
+    padding: 3rch 3rem 3rch 3rem ;
+    margin-bottom: 5rem;
+    font-size: 2rem;
+    font-family: 'Century-Gothic';
+  }
 }
 
 
