@@ -233,7 +233,6 @@ main .btn_blue_sec div{
 /* Специальные предложения */
 .specials,
 .section-title {
-  font-size: 2rem;
   color: var(--text-dark);
   margin-bottom: 1rem;
 	font-family: 'Dale-Gothic-One', Geneva, Verdana, sans-serif ;
