@@ -761,6 +761,13 @@ footer {
     font-size: 0.9rem;
 }
 
+.itsrkey {
+	font-size:1rem;
+	color: #fff;
+	text-decoration: none;
+}
+
+
 /* Responsive */
 @media (max-width: 992px) {
     .hero {

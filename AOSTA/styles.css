@@ -575,6 +575,11 @@ main .btn_blue_sec div{
 	font-size: 1.5rem;
 	color: var(--light-color);
 }
+.itsrkey {
+	font-size:1rem;
+	color: #fff;
+	text-decoration: none;
+}
 /* ______ */
 
 @media (max-width: 992px) {
