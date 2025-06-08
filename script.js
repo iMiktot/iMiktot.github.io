@@ -47,8 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     // Loader
+	let progress = 0; // Инициализируем переменную progress
+
 	const interval = setInterval(() => {
-		progress += Math.random() * 20; // увеличим скорость прогресса
+		progress += Math.random() * 20; // Увеличим скорость прогресса
 		if (progress >= 100) {
 			progress = 100;
 			clearInterval(interval);
@@ -56,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			setTimeout(() => {
 				preloader.classList.add('hidden');
 				content.classList.add('visible');
-			}, 400);  // уменьшил задержку в два раза
+			}, 200);  // уменьшил задержку в два раза
 		}
 		progressBar.style.width = progress + '%';
-	}, 100); // уменьшил интервал в два раза
+	}, 50); // уменьшил интервал в два раза
 	
 	
     // Form submission
