@@ -1,0 +1,332 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты | Портфолио разработчика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Прелоадер -->
+    <div class="preloader" id="preloader">
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+        <div class="loader-text">Загрузка</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+					<img src="favicon.png" alt="Logo">
+                    <span>DevPortfolio</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Создаю цифровые продукты с душой</h1>
+                <p>Привет! Я фронтенд-разработчик, создающий современные и адаптивные веб-приложения. Здесь вы найдёте мои мини работы и проекты.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+                    <a href="#contact" class="btn btn-secondary">Связаться со мной</a>
+                </div>
+            </div>
+            
+			<div class="hero-image floating">
+                <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#4A44B5" d="M178.3,303.5c0,59.3,48.1,187.4,107.4,107.4s107.4-48.1,107.4-217.4H158.3z" style="--j: 0"/>
+                    <path fill="#6C63FF" d="M469.1,189.2c-12.4-28.2-40.5-45.9-71.1-45.9c-23.4,0-45.1,9.7-60.7,27.3c-15.6-17.6-37.3-27.3-60.7-27.3 c-30.6,0-58.7,17.7-71.1,45.9c-13.5,30.7-5.5,67.3,20.1,89.2l91.7,79.6l91.7-79.6C474.6,256.5,482.6,219.9,469.1,189.2z" style="--j: 1"/>
+                    <circle fill="#4A44B5" cx="297.3" cy="175.2" r="40.3" style="--i: 0/>
+                    <circle fill="#FF6584" cx="416.5" cy="175.2" r="40.3" style="--i: 1"/>
+                    <circle fill="#4A44B5" cx="178.1" cy="175.2" r="40.3" style="--i: 2"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+	<div class="child">
+        <svg viewBox="0 0 1200 10" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Мои проекты</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Glow Project -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="img/Glow.png" alt="Glow - Косметический бренд">
+                        <div class="project-tag">HTML/CSS/JS</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Glow - Косметический бренд</h3>
+                        <p>Современный лендинг для косметического бренда с адаптивным дизайном, анимациями и интерактивными элементами.</p>
+                        <a href="Glow/index3-2.html" target="_blank" class="project-link">
+                            Посмотреть проект
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+						<img src="img/AOSTA.png"  alt="Glow - Косметический бренд">
+                        <div class="project-image-placeholder" style="background: linear-gradient(135deg, #4A44B5, #6C63FF);">
+                            <span>AOSTA - Итальянская паста</span>
+                        </div>
+                        <div class="project-tag">HTML/CSS</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>AOSTA - Итальянская паста</h3>
+                        <p>Стильный сайт для учебного проекта из четырех страниц, посвященный итальянской пасте. Выполнен современном и утанченном стиле. </p>
+                        <a href="AOSTA/index.html" target="_blank" class="project-link">
+                            Посмотреть проект
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" alt="Weather App">
+                        <div class="project-tag">JavaScript/API</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>WeatherCast - Прогноз погоды</h3>
+                        <p>Приложение для просмотра погоды с использованием API, геолокации и красивой визуализацией данных.</p>
+                        <a href="#" class="project-link">
+                            Посмотреть проект
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Немного обо мне</h2>
+                    <p>Привет! Меня зовут Алексей, я фронтенд-разработчик с фокусом на создании красивых, функциональных и удобных веб-интерфейсов. Моя страсть - превращать сложные задачи в простые, красивые и интуитивно понятные дизайны.</p>
+                    <p>Я верю, что хороший дизайн - это не только как что-то выглядит, но и как это работает. Я стремлюсь создавать продукты, которые обеспечивают безупречный пользовательский опыт.</p>
+                    
+                    <h3>Мои навыки</h3>
+                    <div class="skills">
+                        <div class="skill">HTML5</div>
+                        <div class="skill">CSS3</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">SQL</div>
+                        <div class="skill">Swift</div>
+                        <div class="skill">Python</div>
+                        <div class="skill">Git</div>
+                        <div class="skill">Golang</div>
+                    </div>
+                </div>
+                
+                <div class="about-image fade-in">
+                    <div class="pattern"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Свяжитесь со мной</h2>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h2>Давайте работать вместе!</h2>
+                    <p>Если у вас есть проект, который вы хотите начать, или вы думаете, что вам может понадобиться моя помощь, свяжитесь со мной.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>s.roman@itsrkey.ru</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Телефон</h4>
+                                <p>+7 (995) 565-50-05</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Локация</h4>
+                                <p>Екатеринбург, Россия</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <div id="form-messages" class="form-message"></div>
+                    <div class="loading-spinner" id="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Отправка сообщения...</p>
+                    </div>
+                    
+                    <form id="contact-form" action="https://formspree.io/f/xrbkpzla" method="POST">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Тема</label>
+                            <input type="text" id="subject" name="subject" placeholder="Предложение о сотрудничестве">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" placeholder="Расскажите о вашем проекте..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="favicon.png" alt="Logo">
+                        <span>DevPortfolio</span>
+                    </div>
+                    <p>Создаю современные и адаптивные веб-приложения с фокусом на пользовательском опыте и производительности.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#projects">Проекты</a></li>
+                        <li><a href="#about">Обо мне</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Полезные ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Мой GitHub</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Ресурсы для разработчиков</a></li>
+                        <li><a href="#">Портфолио Figma</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> s.roman@itsrkey.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (995) 565-50-05</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Екатеринбург, Россия</li>
+                    </ul>
+                </div>
+            </div>
+			<div class="copyright">
+				<p>&copy; <span id="currentYear"></span> SR DevPortfolio. Все права защищены.</p>
+			</div>
+        </div>
+		<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+		<script>
+			const startYear = 2023;
+			const currentYear = new Date().getFullYear();
+			const yearDisplay = currentYear > startYear ? `${startYear}-${currentYear}` : startYear;
+			document.getElementById('currentYear').textContent = yearDisplay;
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const preloader = document.getElementById('preloader');
+				const progressBar = document.getElementById('progress-bar');
+				const content = document.getElementById('content');
+				
+				// Имитация прогресса загрузки
+				let progress = 0;
+				const interval = setInterval(() => {
+					progress += Math.random() * 10;
+					if (progress >= 100) {
+						progress = 100;
+						clearInterval(interval);
+						
+						// Скрываем прелоадер и показываем контент
+						setTimeout(() => {
+							preloader.classList.add('hidden');
+							content.classList.add('visible');
+						}, 800);
+					}
+					progressBar.style.width = progress + '%';
+				}, 200);
+			});
+		</script>
+		<script src="script.js"></script>
+    </footer>
+
+</body>
+</html>
+=======
+ц
+>>>>>>> d0efc26534487f28cdc1c4ed8f0e5200fa7ca349
