@@ -46,22 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
     });
-    // Loader
-	let progress = 0; // Инициализируем переменную progress
 
-	const interval = setInterval(() => {
-		progress += Math.random() * 20; // Увеличим скорость прогресса
-		if (progress >= 100) {
-			progress = 100;
-			clearInterval(interval);
-
-			setTimeout(() => {
-				preloader.classList.add('hidden');
-				content.classList.add('visible');
-			}, 200);  // уменьшил задержку в два раза
-		}
-		progressBar.style.width = progress + '%';
-	}, 50); // уменьшил интервал в два раза
 	
 	
     // Form submission
