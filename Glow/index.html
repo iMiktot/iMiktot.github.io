@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow - Умный уход за кожей</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff7aa2;
+            --secondary: #a5d7e8;
+            --accent: #ffd166;
+            --dark: #3a3a5c;
+            --light: #f8f9fa;
+            --text: #333333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, rgba(255,122,162,0.9) 0%, rgba(165,215,232,0.9) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23ff7aa2" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: cover;
+            position: relative;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            background: var(--secondary);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image i {
+            font-size: 10rem;
+            color: white;
+        }
+        
+        /* Features */
+        .features {
+            background: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .review-card:before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            color: var(--secondary);
+            opacity: 0.3;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .review-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Contact Form */
+        .contact {
+            background: var(--light);
+        }
+        
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,122,162,0.2);
+        }
+        
+        /* Footer */
+        .cta {
+            text-align: center;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: white;
+            color: var(--primary);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .download-btn i {
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--dark);
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Glow</div>
+                <a href="#" class="btn">Скачать</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Сняв каждый день с косметикой, другого заботится о тебе и природу!</h1>
+                <p>Умное решение для ухода за вашей кожей, которое помогает организовать вашу рутину, демонстрировать активность, вовремя пользоваться средствами и улучшать состояние кожи.</p>
+                <a href="#" class="btn btn-primary">Скачать сейчас</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Product -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">О продукте</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Glow - это умное приложение для ухода за вашей кожей, которое помогает организовать вашу косметическую рутину, демонстрировать активность, вовремя пользоваться средствами и даже улучшать состояние кожи. Вопрос за регулярностью ухода решен.</p>
+                    <p>Приложение создано для тех, кто ценит заботу о своей коже и природе. Максимальная гарантия качества на теплом и удобном интерфейсе, который продолжает развиваться.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Функциональность</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Максимальное освещение подсветки</h3>
+                    <p>Идеальное освещение для нанесения макияжа в любое время суток</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Проверка системы и оригинальности продуктов</h3>
+                    <p>Сканируйте продукты и проверяйте их подлинность и состав</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Маскирующую тушь</h3>
+                    <p>Виртуальная примерка туши и других косметических средств</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Еженедельные рекомендации</h3>
+                    <p>Персонализированные советы по уходу за кожей каждую неделю</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about-us">
+        <div class="container">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="about-text">
+                    <p>Glow - это инновационный помощник, созданный для тех, кто ценит единственный уход за вашей кожей и природой. Мы гарантируем экологичность и качество наших решений.</p>
+                    <p>Наша миссия - сделать уход за кожей простым, эффективным и экологичным. Glow позволяет создавать персонализированные ритуалы красоты, которые благотворно влияют на вашу кожу и окружающую среду.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p>Тема выпуска предприятий акции, члена проекта и редакции в году, чтобы представить новый вывод: его реализация!</p>
+                    <div class="review-author">
+                        <div class="author-avatar">УВ</div>
+                        <div>
+                            <h4>Умная Валерьевна</h4>
+                            <p>Пользователь 2 года</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p>Увеличение кондиционера для кожи стало заметно уже через неделю использования приложения!</p>
+                    <div class="review-author">
+                        <div class="author-avatar">УО</div>
+                        <div>
+                            <h4>Умная Осторожная</h4>
+                            <p>Пользователь 6 месяцев</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <p>Связь удобного производства косметики с персональными потребностями - это то, что я искала!</p>
+                    <div class="review-author">
+                        <div class="author-avatar">УБ</div>
+                        <div>
+                            <h4>Уменьшение биологии</h4>
+                            <p>Пользователь 1 год</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Есть вопросы?</h2>
+            <div class="form-container">
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="position">Должность</label>
+                            <input type="text" id="position" placeholder="Ваша должность">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата запроса</label>
+                            <input type="date" id="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" placeholder="Ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Отчество</label>
+                            <input type="text" id="surname" placeholder="Ваше отчество">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Адрес электронной почты</label>
+                        <input type="email" id="email" placeholder="example@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Ваш вопрос</label>
+                        <textarea id="message" rows="4" placeholder="Напишите ваш вопрос здесь..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить вопрос</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Начните пользоваться уже сегодня!</h2>
+            <p>GLOW - Твой путь к сияющей коже! Скачайте приложение, заботясь о нашем отношении к природе.</p>
+            
+            <div class="download-buttons">
+                <a href="#" class="download-btn">
+                    <i class="fab fa-apple"></i>
+                    <div>
+                        <div>Download on the</div>
+                        <div>App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="download-btn">
+                    <i class="fab fa-google-play"></i>
+                    <div>
+                        <div>GET IT ON</div>
+                        <div>Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Glow App. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, rgba(255,122,162,0.9) 0%, rgba(165,215,232,0.9) 100%)';
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
