@@ -123,7 +123,7 @@
             width: 100%;
         }
         
-        .btn, .btn-primary, .btn-head {
+        .btn, .btn-primary, .btn-head, .btn-sections {
             display: inline-block;
             padding: 12px 30px;
             background: white;
@@ -170,7 +170,10 @@
         
         .btn-primary {
 		    color: var(--accent-two);
+			width: 288px;
 			background: white;
+			font-size: 20px;
+
             
         }
 		.btn-primary:hover {
@@ -192,8 +195,17 @@
 			text-align: center;
             width: 152px;
 			margin-top: 3rem;
-            
         }
+		
+		.btn-sections:hover {
+			background: #00B227;
+			
+        }
+		.btn-sections:active {
+			color: var(--secondary);
+			background: white;
+			border: 2px solid var(--secondary);
+		}
 		
 		.btn:hover {
 			background: var(--primary);
@@ -1266,7 +1278,7 @@
             <div class="hero-content">
                 <h1>Glow</h1>
                 <p>Сняв каждый день с косметикой, другого заботится о тебе и природу! </p>
-                <a href="#" class="btn-primary">Скачать сейчас</a>
+                <a href="#" class="btn-primary">Скачать</a>
             </div>
         </div>
     </header>
@@ -1279,7 +1291,7 @@
 			<div class="about-content">
 				<div class="about-text">
 					<p>Glow – это умное приложение для ухода за кожей и косметикой, которое помогает организовать вашу косметичку, контролировать расходы, проверять безопасность продуктов и даже получать бонусы за экологичность.</p>
-					<a href="#" class="btn btn-sections">Скачать</a>
+					<a href="#" class="btn-sections">Скачать</a>
 				</div>
             
 				<div class="product-items">
