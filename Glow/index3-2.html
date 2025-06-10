@@ -87,6 +87,7 @@
         }
         
         .nav-menu a {
+			
             color: black;
             text-decoration: none;
             font-weight: 600;
@@ -102,19 +103,27 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
+            /*background: var(--accent);
+            transition: var(--transition);*/
         }
         
         .nav-menu a:hover {
-            color: var(--accent);
+			border: 5px solid #D9D9D9;
+			border-radius: 16px;
+			background: #D9D9D9;
         }
+		.nav-menu a:active {
+			border: none;
+			border-radius: none;
+			background: none;
+			color: #009330;
+		}
         
         .nav-menu a:hover:after {
             width: 100%;
         }
         
-        .btn {
+        .btn, .btn-primary, .btn-head {
             display: inline-block;
             padding: 12px 30px;
             background: white;
@@ -144,15 +153,34 @@
             text-decoration: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);file:///C:/Users/Mymik/Documents/GitHub/iMiktot.github.io/Glow/index3-2.html#contact
         }
 		
 		.btn-head:hover {
-            transform: translateY(-3px);
+			background: var(--secondary);
+		    color: white;
+			transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
+
+		.btn-head:active {
+		    color: var(--accent-two);
+			background: white;
+		}
         
         .btn-primary {
+		    color: var(--accent-two);
+			background: white;
+            
+        }
+		.btn-primary:hover {
+			background: var(--secondary);
+		    color: white; 
+			transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+		.btn-primary:active {
 		    color: var(--accent-two);
 			background: white;
             
@@ -220,10 +248,12 @@
         .section-title {
 			font-family: "Inter", sans-serif;
             text-align: left;
-			font-size: 3.5rem;
             margin-bottom: 3rem;
             position: relative;
 			color: var(--titles);
+			font-weight: 700;
+			font-size: 64px;
+			line-height: 150%; 
         }
         
         .section-title:after {
@@ -441,9 +471,9 @@
 		.gif-container {
 			position: absolute;
 			bottom: 4.6rem;
-			right: 0;
+			right: 5rem;
 			overflow: hidden;
-			width: 34rem;
+			width: 44rem;
 			z-index: -1;
 		}
         
@@ -454,7 +484,6 @@
 		}
 		
 		.background-gif img {
-			width: 20rem;
 			height: auto;
 		}
 		
@@ -467,11 +496,19 @@
 			margin-bottom: 5rem;
             
         }
+		.btn-sections-features:hover {
+			background: #00B227;
+        }
+		.btn-sections-features:active {
+			color: var(--secondary);
+			background: white;
+			border: 2px solid var(--secondary);
+		}
 		
 		/* Разделительная полоса */
 		.divider-line {
 			height: 4px;
-			background-color: #3B864B;
+			background-color: var(--secondary);
 			width: 100%;
 			margin-top: 0;
 		}
@@ -479,7 +516,7 @@
         .features-grid {
             display: grid;
             gap: 2rem;
-			margin-bottom: 5rem;
+			/*margin-bottom: 5rem;*/
         }
         
         .feature-card-one, .feature-card-two, .feature-card-three, .feature-card-four {
@@ -492,24 +529,36 @@
         }
 
 		.feature-card-one  {
-			margin-right: 5rem;
+			/*margin-right: 5rem;*/
+			border-radius: 16px;
+			width:100%;
 		}
 		
 		.feature-card-two  {
-			margin-right: 15rem;
+			border-radius: 16px;
+			/*margin-right: 15rem;*/
+			width:85%;
 		}
 		
 		.feature-card-three {
-			margin-right: 25rem;
+			border-radius: 16px;
+			width:70%;
+			/*margin-right: 25rem;*/
 		}
 		
 		.feature-card-four {
-			margin-right: 35rem;
+			width:55%;
+			border-radius: 16px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			/*margin-right: 35rem;*/
 		}
 		
         
         .feature-card-one:hover {
             transform: translateY(-10px);
+			background: linear-gradient(180deg, #B5E1C2 0%, #85E8A2 100%); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         .feature-card-two:hover {
@@ -525,10 +574,12 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }		
         
-		.feature-card p {
+		.feature-card-one p, .feature-card-two p, .feature-card-three p, .feature-card-four p {
 			padding:  0 0.8rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			height: 54px;
         }
         
         /* Reviews */
@@ -687,6 +738,7 @@
     
 		.form-right {
 			flex: 1;
+			
 		}
     
 		form-grid {
@@ -697,7 +749,7 @@
 		}
     
 		.form-group {
-			margin-bottom: 1.5rem;
+		
 		}
     
 		.form-group.full-height {
@@ -718,7 +770,7 @@
 			width: 90%;
 			padding: 14px 18px;
 			border: 1px solid #ddd;
-			border-radius: 10px;
+			border-radius: 16px;
 			font-family: 'Inter', sans-serif;
 			font-size: 1rem;
 			transition: var(--transition);
@@ -837,8 +889,8 @@
 		.background-call-gif {
 			object-fit: contain;
 			object-position: bottom right;
-			right: 1%;
-			width: auto;
+			right: 10%;
+			width: 42rem;
 
 		}
 		
@@ -1008,6 +1060,7 @@
 				width: 20rem;
 				object-fit: contain;
 				object-position: bottom right;
+				z-index: -1;
 			}
 			.gif-container {
 				position: absolute;
@@ -1019,18 +1072,22 @@
 			}
 			.feature-card-one  {
 				margin-right: 0;
+				width: 100%;
 			}
 		
 			.feature-card-two  {
 				margin-right: 0;
+				width: 100%;
 			}
 		
 			.feature-card-three {
 				margin-right: 0;
+				width: 100%;
 			}
 		
 			.feature-card-four {
 				margin-right: 0;
+				width: 100%;
 			}
 			.btn-sections-features {
 				position: sticky;
@@ -1209,7 +1266,7 @@
             <div class="hero-content">
                 <h1>Glow</h1>
                 <p>Сняв каждый день с косметикой, другого заботится о тебе и природу! </p>
-                <a href="#" class="btn btn-primary">Скачать сейчас</a>
+                <a href="#" class="btn-primary">Скачать сейчас</a>
             </div>
         </div>
     </header>
@@ -1330,10 +1387,10 @@
 							<div><img src="reviews1.jpg" alt="Анна Валерьяева" class="author-avatar"></div>
 							<div>
 								<h2>Анна Валерьяева</h2>
-								<p>Пользователь 2 года</p>
+
 							</div>
 						</div>
-						<p>Тема выпуска предприятий акции, члена проекта и редакции в году, чтобы представить новый вывод: его реализация!</p>
+						<p>Прекрасное приложение! Я рада, что мои траты на косметику снизились. А еще я теперь всегда знаю, когда у косметики выходит срок годности!</p>
 					</div>
                 
 					<div class="review-card">
@@ -1342,10 +1399,9 @@
 							<div><img src="reviews2.jpg" alt="Ульяна Островская" class="author-avatar"></div>
 							<div>
 								<h2>Ульяна Островская</h2>
-								<p>Пользователь 6 месяцев</p>
 							</div>
 						</div>
-						<p>Увеличение кондиционера для кожи стало заметно уже через неделю использования приложения!</p>
+						<p>Хорошее, мне понравилось</p>
 					</div>
                 
 					<div class="review-card">
@@ -1354,10 +1410,9 @@
 							<div><img src="reviews3.jpg" alt="Аполинария Фамилия" class="author-avatar"></div>
 							<div>
 								<h2>Аполинария Фамилия</h2>
-								<p>Пользователь 1 год</p>
 							</div>
 						</div>
-						<p>Связь удобного производства косметики с персональными потребностями - это то, что я искала!</p>
+						<p>Очень удобное приложение</p>
 					</div>
                 
 					<!-- Добавьте больше отзывов по мере необходимости -->
@@ -1387,35 +1442,30 @@
 							<div class="form-grid">
 								<div class="form-group">
 									<label for="position">Должность</label>
-									<input type="text" id="position" placeholder="Ваша должность">
-								</div>
-								<div class="form-group">
-									<label for="date">Дата запроса</label>
-									<input type="date" id="date">
+									<input type="text" id="position" placeholder="">
 								</div>
 								<div class="form-group">
 									<label for="name">Имя</label>
-									<input type="text" id="name" placeholder="Ваше имя">
+									<input type="text" id="name" placeholder="">
 								</div>
 								<div class="form-group">
 									<label for="surname">Отчество</label>
-									<input type="text" id="surname" placeholder="Ваше отчество">
+									<input type="text" id="surname" placeholder="">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="email">Адрес электронной почты</label>
-								<input type="email" id="email" placeholder="example@mail.com">
+								<input type="email" id="email" placeholder="">
 							</div>
 						</div>
                     
 						<div class="form-right">
 							<div class="form-group full-height">
 								<label for="message">Ваш вопрос</label>
-								<textarea id="message" placeholder="Напишите ваш вопрос здесь..."></textarea>
+								<textarea id="message" placeholder=""></textarea>
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary">Отправить вопрос</button>
 				</form>
 			</div>
 						<!-- Фоновое изображение -->
