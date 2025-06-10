@@ -9,7 +9,7 @@
     <style>
 		@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
         :root {
-            --primary: #ff7aa2;
+            --primary: #235232;
             --secondary: #3b864b;
             --accent: #ff7aa2;
 			--accent-two: #49965F;
@@ -320,7 +320,7 @@
 		}
 		
 		.product-item-two:hover {
-			transform: translateX(0) translateZ(20px);
+			transform: translateX(-60px) translateZ(20px);
 			margin-left: 0;
 			z-index: 10;
 		}
@@ -336,7 +336,7 @@
 		}
 		
 		.product-item-three:hover {
-			transform: translateX(0) translateZ(20px);
+			transform: translateX(-120px) translateZ(20px);
 			margin-left: 0;
 			z-index: 10;
 		}
@@ -352,7 +352,7 @@
 		}
 
 		.product-item:hover {
-			transform: translateX(0) translateZ(20px);
+			transform: translateX(30px) translateZ(20px);
 			margin-left: 0;
 			z-index: 10;
 		}
@@ -361,15 +361,15 @@
 			transition: transform 0.4s ease;
 		}
 
-		.product-item:hover, .product-image {
+		/*.product-item:hover, .product-image {
 			transform: translateZ(30px) scale(1.05);
-		}
+		}*/
 
 		.product-info {
 			transition: transform 0.4s ease, box-shadow 0.4s ease;
 		}
 
-		.product-info {
+		.product-info:hover {
 			transform: translateZ(10px);
 			box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 		}	
@@ -575,14 +575,17 @@
         }
         .feature-card-two:hover {
             transform: translateY(-10px);
+			background: linear-gradient(180deg, #B5E1C2 0%, #85E8A2 100%); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         .feature-card-three:hover {
             transform: translateY(-10px);
+			background: linear-gradient(180deg, #B5E1C2 0%, #85E8A2 100%); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         .feature-card-four:hover {
             transform: translateY(-10px);
+			background: linear-gradient(180deg, #B5E1C2 0%, #85E8A2 100%); 
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }		
         
@@ -1277,7 +1280,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Glow</h1>
-                <p>Сняв каждый день с косметикой, другого заботится о тебе и природу! </p>
+                <p>Cияй каждый день с косметичкой, которая заботится о тебе и природе! </p>
                 <a href="#" class="btn-primary">Скачать</a>
             </div>
         </div>
@@ -1290,7 +1293,8 @@
 			<h2 class="section-title">О продукте</h2>
 			<div class="about-content">
 				<div class="about-text">
-					<p>Glow – это умное приложение для ухода за кожей и косметикой, которое помогает организовать вашу косметичку, контролировать расходы, проверять безопасность продуктов и даже получать бонусы за экологичность.</p>
+					<p>Glow – это умное приложение для ухода за кожей и косметикой, которое помогает организовать вашу косметичку, контролировать расходы, проверять безопасность продуктов  и даже получать бонусы за экологичность.  
+</p>
 					<a href="#" class="btn-sections">Скачать</a>
 				</div>
             
@@ -1310,7 +1314,7 @@
 						<img src="product-item-two.jpg" alt="Продукт" class="product-image">
 						<div class="product-info">
 							<img src="listik.png" alt="Листик" class="leaf-icon">
-							<h4>Крем для лица</h4>
+							<h4>Крем для рук</h4>
 							<p>Mi&Ko</p>
 						</div>
 					</div>
@@ -1320,7 +1324,7 @@
 						<img src="product-item-three.jpg" alt="Продукт" class="product-image">
 						<div class="product-info">
 							<img src="listik.png" alt="Листик" class="leaf-icon">
-							<h4>Тоник для кожи</h4>
+							<h4>Маска для лица</h4>
 							<p>Natura Siberica</p>
 						</div>
 					</div>
@@ -1341,16 +1345,16 @@
 			<h2 class="section-title">Функциональность</h2>
 			<div class="features-grid">
 				<div class="feature-card-one">
-					<p>1. Максимальное освещение подсветки</p>
+					<p>1. Косметичка со сроками годности</p>
 				</div>
 				<div class="feature-card-two">
 					<p>2. Проверка состава и оригинальности продуктов</p>
 				</div>
 				<div class="feature-card-three">
-					<p>3. Маскирующую тушь</p>
+					<p>3. Мониторинг трат</p>
 				</div>
 				<div class="feature-card-four">
-					<p>4. Бонусная система</p>
+					<p>4. Бонусная система </p>
 				</div>
 				<a href="#" class="btn btn-sections-features">Скачать</a>
 			</div>
@@ -1453,7 +1457,7 @@
 						<div class="form-left">
 							<div class="form-grid">
 								<div class="form-group">
-									<label for="position">Должность</label>
+									<label for="position">Фамилия</label>
 									<input type="text" id="position" placeholder="">
 								</div>
 								<div class="form-group">
