@@ -524,7 +524,7 @@ p {
 
 
 /* Footer */
-.footer {
+/* .footer {
   background: var(--green);
   padding: 40px;
   display: flex;
@@ -538,6 +538,12 @@ p {
 .footer {
   background: var(--green);
   padding: 40px 10%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer p {
   display: flex;
   justify-content: center;
 }
