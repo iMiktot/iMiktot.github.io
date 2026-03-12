@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветка · Админ-панель</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:   #1b3a2d;
+  --green2:  #2e5943;
+  --cream:   #faf4ec;
+  --gold:    #c4a36b;
+  --rose:    #d4857a;
+  --text:    #1a1a14;
+  --muted:   #7a7a6a;
+  --border:  #e8e3da;
+  --white:   #ffffff;
+  --sidebar: #0f2218;
+  --hover:   rgba(196,163,107,.1);
+  --danger:  #c0392b;
+  --success: #2e7d52;
+}
+
+html { height: 100%; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: #f5f0e8;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  background: var(--sidebar);
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh;
+  overflow-y: auto;
+}
+.sidebar-logo {
+  padding: 28px 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.sidebar-logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300; letter-spacing: .06em;
+  color: var(--white); line-height: 1;
+}
+.sidebar-logo-name span { color: var(--gold); }
+.sidebar-logo-sub {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); margin-top: 5px;
+}
+.nav-section {
+  padding: 16px 12px 0;
+}
+.nav-section-label {
+  font-size: 9px; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(255,255,255,.25); padding: 0 8px; margin-bottom: 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  color: rgba(255,255,255,.55); font-size: 13px; font-weight: 400;
+  transition: all .18s; margin-bottom: 2px;
+  border: none; background: none; width: 100%; text-align: left;
+}
+.nav-item:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.85); }
+.nav-item.active { background: rgba(196,163,107,.18); color: var(--gold); }
+.nav-icon { font-size: 15px; width: 18px; text-align: center; }
+
+.sidebar-bottom {
+  margin-top: auto; padding: 16px 12px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.preview-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px; border-radius: 10px; width: 100%;
+  border: 1px solid rgba(196,163,107,.4); background: transparent;
+  color: var(--gold); font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; transition: all .2s;
+  text-decoration: none;
+}
+.preview-btn:hover { background: rgba(196,163,107,.12); }
+
+/* ─── MAIN ─── */
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; flex-shrink: 0;
+  position: sticky; top: 0; z-index: 50;
+}
+.topbar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; color: var(--green);
+}
+.topbar-actions { display: flex; gap: 10px; align-items: center; }
+.save-indicator {
+  font-size: 12px; color: var(--success);
+  opacity: 0; transition: opacity .3s;
+  display: flex; align-items: center; gap: 5px;
+}
+.save-indicator.show { opacity: 1; }
+.btn-save {
+  padding: 9px 20px; border: none; border-radius: 8px; cursor: pointer;
+  background: var(--green); color: var(--white);
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: .08em;
+  transition: all .18s;
+}
+.btn-save:hover { background: var(--green2); }
+.btn-save:active { transform: scale(.97); }
+
+.content { padding: 28px 32px; flex: 1; }
+
+/* ─── PANELS ─── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ─── SECTION CARD ─── */
+.card {
+  background: var(--white); border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px 28px; margin-bottom: 20px;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 500; color: var(--green);
+  margin-bottom: 20px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.card-title .ct-icon { font-size: 18px; }
+
+/* ─── FORM ─── */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-row.single { grid-template-columns: 1fr; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.form-input, .form-select, .form-textarea {
+  padding: 11px 14px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: #faf9f7;
+  font-family: 'Jost', sans-serif; font-size: 14px; color: var(--text);
+  outline: none; transition: border-color .18s;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--green); background: var(--white);
+}
+.form-textarea { resize: vertical; min-height: 70px; }
+
+/* ─── PRODUCTS LIST ─── */
+.products-list { display: flex; flex-direction: column; gap: 12px; }
+.product-row {
+  display: flex; align-items: center; gap: 14px;
+  background: #faf9f7; border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 12px 14px;
+  transition: border-color .18s;
+}
+.product-row:hover { border-color: #d0c9be; }
+.product-thumb {
+  width: 52px; height: 52px; border-radius: 10px; object-fit: cover;
+  background: var(--cream); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.product-row-info { flex: 1; min-width: 0; }
+.product-row-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-row-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.product-row-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--green); margin-right: 8px; }
+.row-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.btn-icon {
+  width: 34px; height: 34px; border-radius: 8px; border: 1.5px solid var(--border);
+  background: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: all .15s; color: var(--muted);
+}
+.btn-icon:hover.edit { border-color: var(--green); color: var(--green); background: rgba(27,58,45,.05); }
+.btn-icon:hover.del { border-color: var(--danger); color: var(--danger); background: rgba(192,57,43,.05); }
+
+.btn-add {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 12px; border-radius: 12px; cursor: pointer;
+  border: 2px dashed var(--border); background: transparent;
+  color: var(--muted); font-family: 'Jost', sans-serif;
+  font-size: 13px; font-weight: 500;
+  transition: all .18s; margin-top: 4px;
+}
+.btn-add:hover { border-color: var(--green); color: var(--green); background: rgba(27,58,45,.03); }
+
+/* ─── STORIES LIST ─── */
+.stories-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+.story-admin-card {
+  width: 120px; background: #faf9f7; border: 1.5px solid var(--border);
+  border-radius: 14px; overflow: hidden; transition: border-color .18s;
+  position: relative;
+}
+.story-admin-card:hover { border-color: #d0c9be; }
+.story-thumb-area {
+  height: 160px; background: linear-gradient(135deg,#1b3a2d,#0e1f16);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; position: relative; overflow: hidden;
+  cursor: pointer;
+}
+.story-thumb-area video, .story-thumb-area img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.story-thumb-area .play-badge {
+  position: absolute; bottom: 6px; right: 6px;
+  background: rgba(0,0,0,.5); border-radius: 4px;
+  padding: 2px 5px; font-size: 10px; color: #fff;
+}
+.story-card-info { padding: 8px 10px 10px; }
+.story-card-name { font-size: 12px; font-weight: 500; color: var(--text); }
+.story-card-type { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.story-card-actions {
+  display: flex; gap: 4px; padding: 0 8px 8px;
+}
+.story-card-actions .btn-icon { flex: 1; width: auto; }
+
+.story-add-card {
+  width: 120px; height: 210px; border-radius: 14px; cursor: pointer;
+  border: 2px dashed var(--border); background: transparent;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; color: var(--muted); font-size: 12px; font-weight: 500;
+  transition: all .18s;
+}
+.story-add-card:hover { border-color: var(--green); color: var(--green); }
+.story-add-icon { font-size: 28px; }
+
+/* ─── MODAL / DRAWER ─── */
+.drawer-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(14,31,22,.45); backdrop-filter: blur(3px);
+}
+.drawer-overlay.open { display: flex; align-items: flex-end; justify-content: flex-end; }
+.drawer {
+  width: 440px; height: 100vh; background: var(--white);
+  display: flex; flex-direction: column;
+  box-shadow: -8px 0 40px rgba(0,0,0,.12);
+  animation: slideInRight .3s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.drawer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--green); }
+.drawer-close {
+  width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid var(--border);
+  background: none; cursor: pointer; font-size: 16px; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; transition: all .15s;
+}
+.drawer-close:hover { border-color: var(--danger); color: var(--danger); }
+.drawer-body { flex: 1; overflow-y: auto; padding: 24px; }
+.drawer-footer {
+  padding: 16px 24px; border-top: 1px solid var(--border);
+  display: flex; gap: 10px; flex-shrink: 0;
+}
+.btn-cancel {
+  flex: 1; padding: 12px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: none; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 13px; color: var(--muted);
+  transition: all .18s;
+}
+.btn-cancel:hover { border-color: #b0a898; color: var(--text); }
+.btn-confirm {
+  flex: 2; padding: 12px; border-radius: 10px; border: none; cursor: pointer;
+  background: var(--green); color: var(--white);
+  font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: .08em;
+  transition: all .18s;
+}
+.btn-confirm:hover { background: var(--green2); }
+
+/* ─── IMAGE UPLOAD ─── */
+.img-upload-area {
+  border: 2px dashed var(--border); border-radius: 12px;
+  padding: 20px; text-align: center; cursor: pointer;
+  transition: all .18s; background: #faf9f7; position: relative;
+  min-height: 100px;
+}
+.img-upload-area:hover { border-color: var(--green); background: rgba(27,58,45,.02); }
+.img-upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.img-upload-icon { font-size: 32px; margin-bottom: 8px; }
+.img-upload-text { font-size: 13px; color: var(--muted); }
+.img-preview {
+  width: 100%; max-height: 180px; object-fit: cover;
+  border-radius: 10px; display: none; margin-top: 10px;
+}
+.img-preview.show { display: block; }
+
+/* ─── VIDEO UPLOAD ─── */
+.video-upload-area {
+  border: 2px dashed var(--border); border-radius: 12px;
+  padding: 24px 20px; text-align: center; cursor: pointer;
+  transition: all .18s; background: #faf9f7; position: relative;
+}
+.video-upload-area:hover { border-color: var(--green); }
+.video-upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.video-preview { width: 100%; border-radius: 10px; display: none; margin-top: 10px; max-height: 200px; }
+.video-preview.show { display: block; }
+
+/* ─── BADGE ─── */
+.badge {
+  display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 500;
+}
+.badge.green { background: rgba(46,125,82,.12); color: var(--success); }
+.badge.gold { background: rgba(196,163,107,.15); color: #8a6830; }
+
+/* ─── STATS ─── */
+.stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--white); border-radius: 14px; border: 1px solid var(--border);
+  padding: 18px 20px;
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300; color: var(--green); line-height: 1;
+}
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--green); color: var(--white);
+  padding: 14px 20px; border-radius: 12px;
+  font-size: 13px; font-weight: 500;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  transform: translateY(80px); opacity: 0;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  max-width: 300px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .form-row { grid-template-columns: 1fr; }
+  .sidebar { width: 60px; }
+  .sidebar-logo-name, .sidebar-logo-sub, .nav-section-label, .nav-item span { display: none; }
+  .nav-item { justify-content: center; padding: 12px; }
+  .nav-icon { width: auto; margin: 0; }
+  .sidebar-logo { padding: 16px; }
+  .content { padding: 20px 16px; }
+  .drawer { width: 100%; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ SIDEBAR ════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-name">Ветк<span>а</span></div>
+    <div class="sidebar-logo-sub">Панель управления</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Контент</div>
+    <button class="nav-item active" onclick="showPanel('products')">
+      <span class="nav-icon">🛍️</span><span>Готовые букеты</span>
+    </button>
+    <button class="nav-item" onclick="showPanel('stories')">
+      <span class="nav-icon">📱</span><span>Сторис</span>
+    </button>
+    <button class="nav-item" onclick="showPanel('settings')">
+      <span class="nav-icon">⚙️</span><span>Настройки сайта</span>
+    </button>
+  </div>
+
+  <div class="sidebar-bottom">
+    <a href="vetka-landing.html" target="_blank" class="preview-btn">
+      <span>👁</span><span>Открыть сайт</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ════════════ MAIN ════════════ -->
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-title" id="topbarTitle">Готовые букеты</div>
+    <div class="topbar-actions">
+      <div class="save-indicator" id="saveIndicator">✅ Сохранено</div>
+      <button class="btn-save" onclick="saveAll()">Сохранить изменения</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ── PANEL: PRODUCTS ── -->
+    <div class="panel active" id="panel-products">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" id="statProducts">0</div>
+          <div class="stat-label">Товаров в каталоге</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="statStories">0</div>
+          <div class="stat-label">Активных сторис</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Заявок принято</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="ct-icon">🌸</span> Список готовых букетов</div>
+        <div class="products-list" id="productsList"></div>
+        <button class="btn-add" onclick="openProductDrawer()">
+          <span>＋</span> Добавить букет
+        </button>
+      </div>
+    </div>
+
+    <!-- ── PANEL: STORIES ── -->
+    <div class="panel" id="panel-stories">
+      <div class="card">
+        <div class="card-title"><span class="ct-icon">📱</span> Управление сторис</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">Сторис отображаются на главной странице в виде кружков. При нажатии открывается вертикальное видео или слайд с текстом.</p>
+        <div class="stories-grid" id="storiesList"></div>
+      </div>
+    </div>
+
+    <!-- ── PANEL: SETTINGS ── -->
+    <div class="panel" id="panel-settings">
+      <div class="card">
+        <div class="card-title"><span class="ct-icon">🏪</span> Информация о салоне</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Название сайта</label>
+            <input class="form-input" id="s-siteName" value="Ветка" placeholder="Название салона">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Город</label>
+            <input class="form-input" id="s-city" value="Москва" placeholder="Город">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label class="form-label">Слоган</label>
+            <input class="form-input" id="s-slogan" value="Цветы — это по любви" placeholder="Слоган">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="ct-icon">📞</span> Контакты</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" id="s-phone" type="tel" value="+7 (999) 000-00-00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="s-email" type="email" value="hello@vetka.ru">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label class="form-label">Адрес</label>
+            <input class="form-input" id="s-address" value="г. Москва, ул. Цветочная, 8">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label class="form-label">Часы работы</label>
+            <input class="form-input" id="s-hours" value="Ежедневно 8:00 — 22:00">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="ct-icon">💬</span> Мессенджеры</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">WhatsApp (номер)</label>
+            <input class="form-input" id="s-whatsapp" value="+79990000000" placeholder="+7...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Telegram (@username)</label>
+            <input class="form-input" id="s-telegram" value="@vetka_flowers" placeholder="@username">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">ВКонтакте (ссылка)</label>
+            <input class="form-input" id="s-vk" value="vk.com/vetka_flowers" placeholder="vk.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Instagram</label>
+            <input class="form-input" id="s-instagram" value="" placeholder="@username">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</main>
+
+<!-- ════════════ PRODUCT DRAWER ════════════ -->
+<div class="drawer-overlay" id="productDrawer" onclick="closeDrawer('productDrawer',event)">
+  <div class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer-header">
+      <div class="drawer-title" id="productDrawerTitle">Добавить букет</div>
+      <button class="drawer-close" onclick="closeDrawer('productDrawer')">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div style="margin-bottom:20px;">
+        <div class="form-label" style="margin-bottom:10px;">Фото букета</div>
+        <div class="img-upload-area" id="productImgArea">
+          <input type="file" accept="image/*" onchange="handleProductImg(this)">
+          <div class="img-upload-icon">📷</div>
+          <div class="img-upload-text">Нажмите или перетащите фото<br><span style="font-size:11px;opacity:.6">JPG, PNG до 10 МБ</span></div>
+          <img class="img-preview" id="productImgPreview" alt="">
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="form-group">
+          <label class="form-label">Название букета</label>
+          <input class="form-input" id="p-name" placeholder="Например: Алые розы">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Описание</label>
+          <textarea class="form-textarea" id="p-desc" placeholder="Состав, количество, упаковка..."></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label class="form-label">Цена (₽)</label>
+            <input class="form-input" id="p-price" type="number" placeholder="3500">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Значок (бейдж)</label>
+            <input class="form-input" id="p-badge" placeholder="Хит / Новинка">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-cancel" onclick="closeDrawer('productDrawer')">Отмена</button>
+      <button class="btn-confirm" onclick="saveProduct()">Сохранить букет</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ STORY DRAWER ════════════ -->
+<div class="drawer-overlay" id="storyDrawer" onclick="closeDrawer('storyDrawer',event)">
+  <div class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer-header">
+      <div class="drawer-title" id="storyDrawerTitle">Добавить сторис</div>
+      <button class="drawer-close" onclick="closeDrawer('storyDrawer')">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div style="margin-bottom:20px;">
+        <div class="form-label" style="margin-bottom:8px;">Тип сторис</div>
+        <div style="display:flex;gap:10px;">
+          <button class="story-type-btn active" onclick="selectStoryType(this,'video')">📹 Видео</button>
+          <button class="story-type-btn" onclick="selectStoryType(this,'text')">✍️ Текстовый слайд</button>
+        </div>
+      </div>
+
+      <div id="storyVideoSection">
+        <div class="form-label" style="margin-bottom:8px;">Видео (вертикальное, 9:16)</div>
+        <div class="video-upload-area">
+          <input type="file" accept="video/*" onchange="handleStoryVideo(this)">
+          <div style="font-size:28px;margin-bottom:8px;">🎬</div>
+          <div style="font-size:13px;color:var(--muted);">Загрузить видео<br><span style="font-size:11px;opacity:.6">MP4, MOV до 50 МБ</span></div>
+          <video class="video-preview" id="storyVideoPreview" muted loop playsinline controls></video>
+        </div>
+      </div>
+
+      <div id="storyTextSection" style="display:none;">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label class="form-label">Цвет фона</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;" id="bgColorPicker">
+            <div class="color-chip active" style="background:linear-gradient(135deg,#1b3a2d,#0e1f16)" onclick="selectBg(this,'linear-gradient(135deg,#1b3a2d,#0e1f16)')"></div>
+            <div class="color-chip" style="background:linear-gradient(135deg,#3a0a0a,#1b0505)" onclick="selectBg(this,'linear-gradient(135deg,#3a0a0a,#1b0505)')"></div>
+            <div class="color-chip" style="background:linear-gradient(135deg,#2a1020,#1a0812)" onclick="selectBg(this,'linear-gradient(135deg,#2a1020,#1a0812)')"></div>
+            <div class="color-chip" style="background:linear-gradient(135deg,#1a2e1a,#0a1a10)" onclick="selectBg(this,'linear-gradient(135deg,#1a2e1a,#0a1a10)')"></div>
+            <div class="color-chip" style="background:linear-gradient(135deg,#2e1a08,#1a0e04)" onclick="selectBg(this,'linear-gradient(135deg,#2e1a08,#1a0e04)')"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px;">
+        <div class="form-group">
+          <label class="form-label">Название (отображается под кружком)</label>
+          <input class="form-input" id="s-name" placeholder="Розы дня">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Цитата / заголовок в сторис</label>
+          <input class="form-input" id="s-quote" placeholder="Свежие розы каждое утро">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Подпись внизу</label>
+          <textarea class="form-textarea" id="s-caption" placeholder="Описание, которое видно поверх видео..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-cancel" onclick="closeDrawer('storyDrawer')">Отмена</button>
+      <button class="btn-confirm" onclick="saveStory()">Сохранить сторис</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOAST ════════════ -->
+<div class="toast" id="toast"></div>
+
+<style>
+.story-type-btn {
+  padding: 9px 16px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: #faf9f7;
+  font-family: 'Jost', sans-serif; font-size: 13px; color: var(--muted);
+  transition: all .18s;
+}
+.story-type-btn.active {
+  border-color: var(--green); color: var(--green); background: rgba(27,58,45,.05);
+}
+.color-chip {
+  width: 36px; height: 36px; border-radius: 8px; cursor: pointer;
+  border: 3px solid transparent; transition: all .15s;
+}
+.color-chip.active { border-color: var(--gold); transform: scale(1.1); }
+</style>
+
+<script>
+// ════════════════ STATE ════════════════
+var products = [];
+var stories  = [];
+var settings = {};
+var editProductIdx = -1;
+var editStoryIdx   = -1;
+var productImgData = '';
+var storyVideoData = '';
+var storyType      = 'video';
+var selectedBg     = 'linear-gradient(135deg,#1b3a2d,#0e1f16)';
+
+// ════════════════ INIT ════════════════
+(function init() {
+  products = JSON.parse(localStorage.getItem('vetka_products') || '[]');
+  stories  = JSON.parse(localStorage.getItem('vetka_stories')  || '[]');
+  settings = JSON.parse(localStorage.getItem('vetka_settings') || '{}');
+
+  // If no products yet, seed with defaults
+  if (!products.length) {
+    products = [
+      { name:'Алые розы',       desc:'25 роз в крафт-бумаге',       price:3500, badge:'Хит',     img:'' },
+      { name:'Полевой сбор',    desc:'Ромашки, лаванда, эвкалипт',   price:2800, badge:'Новинка', img:'' },
+      { name:'Пионы нежность',  desc:'15 пионов, фисташка',          price:4200, badge:'',        img:'' },
+      { name:'Солнечный день',  desc:'Подсолнухи, гипсофила',        price:2100, badge:'',        img:'' },
+      { name:'Тюльпановый рай', desc:'51 тюльпан, лента',            price:5100, badge:'',        img:'' },
+      { name:'Зелёная поэзия',  desc:'Монобукет из зелени',          price:1800, badge:'Эко',     img:'' },
+    ];
+  }
+  if (!stories.length) {
+    stories = [
+      { name:'Розы дня',       quote:'Свежие красные розы',       caption:'Алые розы — символ страсти.',       videoSrc:'', type:'text', bg:'linear-gradient(135deg,#3a0a0a,#1b0505)' },
+      { name:'Сборные букеты', quote:'Смешанные сезонные букеты', caption:'Лаванда, ромашки, эвкалипт.',       videoSrc:'', type:'text', bg:'linear-gradient(135deg,#1a2e1a,#0a1a10)' },
+      { name:'Зелень & декор', quote:'Зелёные композиции',        caption:'Папоротник, аспарагус, рускус.',    videoSrc:'', type:'text', bg:'linear-gradient(135deg,#0a2010,#051a08)' },
+    ];
+  }
+
+  loadSettings();
+  renderProducts();
+  renderStories();
+  updateStats();
+})();
+
+// ════════════════ NAV ════════════════
+var panelTitles = {
+  products: 'Готовые букеты',
+  stories:  'Сторис',
+  settings: 'Настройки сайта',
+};
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.getElementById('topbarTitle').textContent = panelTitles[id];
+}
+
+// ════════════════ PRODUCTS ════════════════
+function renderProducts() {
+  var list = document.getElementById('productsList');
+  if (!products.length) {
+    list.innerHTML = '<p style="text-align:center;color:var(--muted);padding:20px;font-size:14px;">Нет товаров. Добавьте первый букет.</p>';
+    return;
+  }
+  list.innerHTML = products.map(function(p, i) {
+    return '<div class="product-row">'
+      + '<div class="product-thumb">' + (p.img ? '<img src="'+p.img+'" alt="">' : '🌸') + '</div>'
+      + '<div class="product-row-info">'
+      + '<div class="product-row-name">' + esc(p.name) + (p.badge ? ' <span class="badge gold">'+esc(p.badge)+'</span>' : '') + '</div>'
+      + '<div class="product-row-meta">' + esc(p.desc) + '</div>'
+      + '</div>'
+      + '<div class="product-row-price">' + (p.price ? p.price.toLocaleString('ru') + ' ₽' : '—') + '</div>'
+      + '<div class="row-actions">'
+      + '<button class="btn-icon edit" onclick="editProduct('+i+')" title="Редактировать">✏️</button>'
+      + '<button class="btn-icon del" onclick="deleteProduct('+i+')" title="Удалить">🗑️</button>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+  updateStats();
+}
+
+function openProductDrawer(idx) {
+  editProductIdx = (idx !== undefined) ? idx : -1;
+  productImgData = '';
+  var isEdit = editProductIdx >= 0;
+  document.getElementById('productDrawerTitle').textContent = isEdit ? 'Редактировать букет' : 'Добавить букет';
+  var p = isEdit ? products[editProductIdx] : {};
+  document.getElementById('p-name').value  = p.name  || '';
+  document.getElementById('p-desc').value  = p.desc  || '';
+  document.getElementById('p-price').value = p.price || '';
+  document.getElementById('p-badge').value = p.badge || '';
+  var prev = document.getElementById('productImgPreview');
+  if (p.img) { prev.src = p.img; prev.classList.add('show'); productImgData = p.img; }
+  else { prev.src=''; prev.classList.remove('show'); }
+  document.getElementById('productDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function editProduct(i) { openProductDrawer(i); }
+
+function deleteProduct(i) {
+  if (!confirm('Удалить букет «' + products[i].name + '»?')) return;
+  products.splice(i, 1);
+  renderProducts();
+  toast('Букет удалён');
+}
+
+function saveProduct() {
+  var name  = document.getElementById('p-name').value.trim();
+  var price = parseInt(document.getElementById('p-price').value) || 0;
+  if (!name) { alert('Введите название букета'); return; }
+  var obj = {
+    name:  name,
+    desc:  document.getElementById('p-desc').value.trim(),
+    price: price,
+    badge: document.getElementById('p-badge').value.trim(),
+    img:   productImgData,
+  };
+  if (editProductIdx >= 0) { products[editProductIdx] = obj; }
+  else { products.push(obj); }
+  renderProducts();
+  closeDrawer('productDrawer');
+  toast(editProductIdx >= 0 ? '✅ Букет обновлён' : '✅ Букет добавлен');
+  editProductIdx = -1;
+}
+
+function handleProductImg(input) {
+  var file = input.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    productImgData = e.target.result;
+    var prev = document.getElementById('productImgPreview');
+    prev.src = productImgData; prev.classList.add('show');
+  };
+  reader.readAsDataURL(file);
+}
+
+// ════════════════ STORIES ════════════════
+function renderStories() {
+  var list = document.getElementById('storiesList');
+  var html = stories.map(function(s, i) {
+    var thumbContent = s.videoSrc
+      ? '<video src="'+s.videoSrc+'" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></video><span class="play-badge">▶ видео</span>'
+      : '<span style="position:relative;z-index:1;">' + (s.icon||'🌸') + '</span>';
+    return '<div class="story-admin-card">'
+      + '<div class="story-thumb-area" style="background:'+s.bg+'">' + thumbContent + '</div>'
+      + '<div class="story-card-info"><div class="story-card-name">'+esc(s.name)+'</div>'
+      + '<div class="story-card-type">'+(s.videoSrc ? '📹 Видео' : '🖼 Слайд')+'</div></div>'
+      + '<div class="story-card-actions">'
+      + '<button class="btn-icon edit" style="flex:1;width:auto;" onclick="editStory('+i+')" title="Редактировать">✏️</button>'
+      + '<button class="btn-icon del" style="flex:1;width:auto;" onclick="deleteStory('+i+')" title="Удалить">🗑️</button>'
+      + '</div></div>';
+  }).join('');
+  html += '<button class="story-add-card" onclick="openStoryDrawer()">'
+    + '<span class="story-add-icon">＋</span><span>Добавить сторис</span></button>';
+  list.innerHTML = html;
+  updateStats();
+}
+
+function openStoryDrawer(idx) {
+  editStoryIdx = (idx !== undefined) ? idx : -1;
+  storyVideoData = '';
+  var isEdit = editStoryIdx >= 0;
+  document.getElementById('storyDrawerTitle').textContent = isEdit ? 'Редактировать сторис' : 'Добавить сторис';
+  var s = isEdit ? stories[editStoryIdx] : {};
+  document.getElementById('s-name').value    = s.name    || '';
+  document.getElementById('s-quote').value   = s.quote   || '';
+  document.getElementById('s-caption').value = s.caption || '';
+  var vidPrev = document.getElementById('storyVideoPreview');
+  if (s.videoSrc) { vidPrev.src = s.videoSrc; vidPrev.classList.add('show'); storyVideoData = s.videoSrc; }
+  else { vidPrev.src=''; vidPrev.classList.remove('show'); }
+  if (s.bg) {
+    document.querySelectorAll('.color-chip').forEach(function(c){ c.classList.remove('active'); });
+    var chips = document.querySelectorAll('.color-chip');
+    chips.forEach(function(c) { if(c.dataset.bg===s.bg) c.classList.add('active'); });
+    selectedBg = s.bg;
+  }
+  selectStoryType(
+    document.querySelector('.story-type-btn'),
+    (s.videoSrc ? 'video' : 'text'),
+    true
+  );
+  document.getElementById('storyDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function editStory(i) { openStoryDrawer(i); }
+
+function deleteStory(i) {
+  if (!confirm('Удалить сторис «' + stories[i].name + '»?')) return;
+  stories.splice(i, 1);
+  renderStories();
+  toast('Сторис удалена');
+}
+
+function saveStory() {
+  var name = document.getElementById('s-name').value.trim();
+  if (!name) { alert('Введите название сторис'); return; }
+  var obj = {
+    name:     name,
+    quote:    document.getElementById('s-quote').value.trim(),
+    caption:  document.getElementById('s-caption').value.trim(),
+    videoSrc: storyVideoData,
+    type:     storyType,
+    bg:       selectedBg,
+    icon:     '🌸',
+  };
+  if (editStoryIdx >= 0) { stories[editStoryIdx] = obj; }
+  else { stories.push(obj); }
+  renderStories();
+  closeDrawer('storyDrawer');
+  toast(editStoryIdx >= 0 ? '✅ Сторис обновлена' : '✅ Сторис добавлена');
+  editStoryIdx = -1;
+}
+
+function handleStoryVideo(input) {
+  var file = input.files[0]; if (!file) return;
+  if (file.size > 52428800) { alert('Файл слишком большой. Максимум 50 МБ.'); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    storyVideoData = e.target.result;
+    var v = document.getElementById('storyVideoPreview');
+    v.src = storyVideoData; v.classList.add('show'); v.play();
+  };
+  reader.readAsDataURL(file);
+}
+
+function selectStoryType(btn, type, silent) {
+  storyType = type;
+  document.querySelectorAll('.story-type-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (type === 'video') {
+    document.querySelectorAll('.story-type-btn')[0].classList.add('active');
+    document.getElementById('storyVideoSection').style.display = 'block';
+    document.getElementById('storyTextSection').style.display  = 'none';
+  } else {
+    document.querySelectorAll('.story-type-btn')[1].classList.add('active');
+    document.getElementById('storyVideoSection').style.display = 'none';
+    document.getElementById('storyTextSection').style.display  = 'block';
+  }
+}
+
+function selectBg(el, bg) {
+  document.querySelectorAll('.color-chip').forEach(function(c){ c.classList.remove('active'); });
+  el.classList.add('active');
+  selectedBg = bg;
+}
+
+// ════════════════ SETTINGS ════════════════
+function loadSettings() {
+  if (settings.siteTitle) document.getElementById('s-siteName').value = settings.siteTitle;
+  if (settings.slogan)    document.getElementById('s-slogan').value   = settings.slogan;
+  if (settings.city)      document.getElementById('s-city').value     = settings.city;
+  if (settings.phone)     document.getElementById('s-phone').value    = settings.phone;
+  if (settings.email)     document.getElementById('s-email').value    = settings.email;
+  if (settings.address)   document.getElementById('s-address').value  = settings.address;
+  if (settings.hours)     document.getElementById('s-hours').value    = settings.hours;
+  if (settings.whatsapp)  document.getElementById('s-whatsapp').value = settings.whatsapp;
+  if (settings.telegram)  document.getElementById('s-telegram').value = settings.telegram;
+  if (settings.vk)        document.getElementById('s-vk').value       = settings.vk;
+  if (settings.instagram) document.getElementById('s-instagram').value= settings.instagram;
+}
+
+function collectSettings() {
+  return {
+    siteTitle: document.getElementById('s-siteName').value.trim(),
+    slogan:    document.getElementById('s-slogan').value.trim(),
+    city:      document.getElementById('s-city').value.trim(),
+    phone:     document.getElementById('s-phone').value.trim(),
+    email:     document.getElementById('s-email').value.trim(),
+    address:   document.getElementById('s-address').value.trim(),
+    hours:     document.getElementById('s-hours').value.trim(),
+    whatsapp:  document.getElementById('s-whatsapp').value.trim(),
+    telegram:  document.getElementById('s-telegram').value.trim(),
+    vk:        document.getElementById('s-vk').value.trim(),
+    instagram: document.getElementById('s-instagram').value.trim(),
+  };
+}
+
+// ════════════════ SAVE ALL ════════════════
+function saveAll() {
+  settings = collectSettings();
+  try {
+    localStorage.setItem('vetka_products', JSON.stringify(products));
+    localStorage.setItem('vetka_stories',  JSON.stringify(stories));
+    localStorage.setItem('vetka_settings', JSON.stringify(settings));
+    var ind = document.getElementById('saveIndicator');
+    ind.classList.add('show');
+    setTimeout(function(){ ind.classList.remove('show'); }, 2500);
+    toast('✅ Все изменения сохранены!');
+  } catch(e) {
+    // localStorage might be full (base64 images are large)
+    alert('Ошибка сохранения. Попробуйте уменьшить количество изображений или размер видео.');
+  }
+}
+
+// ════════════════ HELPERS ════════════════
+function updateStats() {
+  document.getElementById('statProducts').textContent = products.length;
+  document.getElementById('statStories').textContent  = stories.length;
+}
+
+function closeDrawer(id, e) {
+  if (e && e.target !== document.getElementById(id)) return;
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toast(msg, dur) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, dur || 2800);
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// keyboard shortcut: Ctrl+S
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveAll(); }
+});
+</script>
+</body>
+</html>
