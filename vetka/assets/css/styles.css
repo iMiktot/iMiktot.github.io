@@ -114,6 +114,8 @@ textarea {
   display: inline-flex;
   flex-direction: column;
   gap: 4px;
+  align-items: center;
+  text-align: center;
 }
 
 .brand-mark,
@@ -143,6 +145,13 @@ textarea {
   font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+.brand-line {
+  display: block;
+  width: 112px;
+  height: 1px;
+  background: rgba(0, 71, 49, 0.58);
 }
 
 .site-nav {
@@ -260,7 +269,11 @@ textarea {
 }
 
 .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   max-width: 660px;
+  text-align: left;
 }
 
 .eyebrow,
@@ -281,6 +294,15 @@ textarea {
   color: rgba(255, 255, 255, 0.78);
 }
 
+.hero-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-start;
+  gap: 14px;
+  text-align: center;
+}
+
 .hero-title,
 .section-title,
 .product-name,
@@ -292,14 +314,21 @@ textarea {
 }
 
 .hero-title {
-  margin: 14px 0 8px;
+  margin: 14px 0 0;
   font-size: clamp(3.2rem, 6.4vw, 6rem);
   line-height: 0.92;
   color: var(--white);
 }
 
+.hero-brand-line {
+  display: block;
+  width: 148px;
+  height: 1px;
+  background: rgba(239, 228, 206, 0.8);
+}
+
 .hero-slogan {
-  margin: 0 0 18px;
+  margin: 0 0 6px;
   font-size: 1rem;
   letter-spacing: 0.22em;
 }
@@ -360,14 +389,32 @@ textarea {
 .hero-banners {
   display: grid;
   gap: 14px;
+  align-content: end;
+  min-height: 420px;
 }
 
 .hero-banner {
+  display: none;
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    background-color 0.24s ease;
+}
+
+.hero-banner.is-active {
+  display: block;
+}
+
+.hero-banner:hover,
+.hero-banner:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(239, 228, 206, 0.42);
+  background: rgba(255, 255, 255, 0.11);
 }
 
 .hero-banner-kicker {
@@ -388,6 +435,35 @@ textarea {
   color: rgba(255, 255, 255, 0.74);
 }
 
+.hero-banner-link {
+  display: inline-flex;
+  margin-top: 18px;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--surface);
+}
+
+.hero-banner-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.hero-banner-dots button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+}
+
+.hero-banner-dots button.is-active {
+  background: var(--surface);
+}
+
 .section {
   padding: 110px 0 0;
 }
@@ -397,10 +473,7 @@ textarea {
 }
 
 .section-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 390px);
-  gap: 24px;
-  align-items: end;
+  display: block;
 }
 
 .section-kicker,
@@ -559,17 +632,37 @@ textarea {
 }
 
 .info-card {
-  padding: 34px;
+  padding: 42px;
+  background:
+    linear-gradient(180deg, rgba(0, 71, 49, 0.92), rgba(23, 92, 71, 0.92)),
+    rgba(255, 255, 255, 0.74);
+  color: var(--white);
+  box-shadow: 0 22px 48px rgba(0, 71, 49, 0.18);
+}
+
+.info-card-kicker {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(239, 228, 206, 0.86);
 }
 
 .info-card h3 {
   margin: 0 0 14px;
-  font-size: 2rem;
+  font-size: 2.2rem;
   line-height: 0.98;
 }
 
 .info-card p {
   margin: 0 0 26px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.info-card .button {
+  min-height: 60px;
+  padding-inline: 28px;
+  align-self: start;
 }
 
 .request-card {
@@ -614,6 +707,10 @@ textarea {
 .main-form-success p {
   margin: 0 0 18px;
   color: var(--ink-soft);
+}
+
+.about-copy {
+  max-width: 760px;
 }
 
 .form-note p {
@@ -664,6 +761,18 @@ textarea {
   justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
+}
+
+.footer-brand-block {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-brand-line {
+  background: rgba(0, 71, 49, 0.52);
 }
 
 .footer-meta {
@@ -872,6 +981,20 @@ textarea {
 
   .hero-grid {
     gap: 20px;
+  }
+
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-brand-block {
+    align-items: center;
+    align-self: center;
+  }
+
+  .hero-banners {
+    min-height: auto;
   }
 
   .info-gallery-events,

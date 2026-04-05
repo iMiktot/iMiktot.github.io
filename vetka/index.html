@@ -15,6 +15,7 @@
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="VETKA">
         <span class="brand-mark">VETKA</span>
+        <span class="brand-line"></span>
         <span class="brand-copy">Цветы это по любви</span>
       </a>
 
@@ -27,7 +28,7 @@
         <a href="#ready">Готовые букеты</a>
         <a href="#custom">Под заказ</a>
         <a href="#events">Мероприятия</a>
-        <a href="#horeca">Для кафе и ресторанов</a>
+        <a href="#horeca">Для кофеен, ресторанов и гостиниц</a>
         <a href="#about">О магазине</a>
         <a href="#contacts">Контакты</a>
       </nav>
@@ -58,10 +59,13 @@
         <div class="hero-grid">
           <div class="hero-copy reveal">
             <p class="eyebrow">Цветочный салон · Екатеринбург</p>
-            <h1 class="hero-title">VETKA</h1>
-            <p class="hero-slogan">Цветы это по любви</p>
+            <div class="hero-brand-block">
+              <h1 class="hero-title">VETKA</h1>
+              <span class="hero-brand-line"></span>
+              <p class="hero-slogan">Цветы это по любви</p>
+            </div>
             <p class="hero-description">
-              Авторские букеты, бережная упаковка, доставка по городу и оформление пространств для событий и бизнеса.
+              Авторские букеты и композиции из свежесрезанных цветов. Оформление пространств для событий и бизнеса.
             </p>
 
             <div class="hero-actions">
@@ -70,17 +74,26 @@
             </div>
           </div>
 
-          <div class="hero-banners">
-            <article class="hero-banner reveal">
-              <p class="hero-banner-kicker">Сезонное предложение</p>
-              <h2>Весенняя коллекция букетов</h2>
-              <p>Нежные пастельные композиции и свежие сезонные цветы в фирменной упаковке.</p>
-            </article>
-            <article class="hero-banner reveal">
-              <p class="hero-banner-kicker">Акция</p>
-              <h2>Фото букета перед отправкой</h2>
-              <p>Согласуем композицию в WhatsApp или Telegram перед доставкой получателю.</p>
-            </article>
+          <div class="hero-banners reveal" data-promo-slider>
+            <a class="hero-banner is-active" href="#accessories">
+              <p class="hero-banner-kicker">Специальное предложение</p>
+              <h2>Коробка сам себе флорист</h2>
+              <p>Идеально для тех кто любит творить сам.</p>
+              <span class="hero-banner-link">Подробнее</span>
+            </a>
+            <a class="hero-banner" href="#request">
+              <p class="hero-banner-kicker">Подписка на букет</p>
+              <h2>Свежие цветы дома каждую неделю</h2>
+              <p>Вы оформляете подписку один раз, а мы регулярно привозим новый букет к вам домой.</p>
+              <span class="hero-banner-link">Оставить заявку</span>
+            </a>
+            <a class="hero-banner" href="#contacts">
+              <p class="hero-banner-kicker">Быстрый контакт</p>
+              <h2>Telegram и MAX для согласования заказа</h2>
+              <p>Удобно обсудить детали букета, отправить референсы и согласовать доставку без звонков.</p>
+              <span class="hero-banner-link">Открыть контакты</span>
+            </a>
+            <div class="hero-banner-dots" data-promo-dots></div>
           </div>
         </div>
       </section>
@@ -90,9 +103,6 @@
           <p class="section-kicker">Готовые букеты</p>
           <div class="section-row">
             <h2 class="section-title">Букеты, которые можно заказать прямо сейчас</h2>
-            <p class="section-note">
-              Для быстрой продажи короткое описание оставляем: оно помогает сразу понять настроение букета и сценарий подарка.
-            </p>
           </div>
         </div>
         <div class="product-grid" id="readyGrid"></div>
@@ -102,10 +112,7 @@
         <div class="section-head reveal">
           <p class="section-kicker">Букеты под заказ</p>
           <div class="section-row">
-            <h2 class="section-title">Подберём похожую композицию или соберём букет с нуля</h2>
-            <p class="section-note">
-              Клиент оставляет заявку, а дальше вы можете увести его в форму, Telegram или WhatsApp.
-            </p>
+            <h2 class="section-title">Воплотим в жизнь любую вашу идею.</h2>
           </div>
         </div>
         <div class="product-grid" id="customGrid"></div>
@@ -116,9 +123,6 @@
           <p class="section-kicker">Оформление мероприятий</p>
           <div class="section-row">
             <h2 class="section-title">Свадьбы, дни рождения, фотосессии и камерные события</h2>
-            <p class="section-note">
-              Подбираем оформление под площадку и формат события: от букетов на столы до цельной флористической концепции.
-            </p>
           </div>
         </div>
 
@@ -130,9 +134,10 @@
           </div>
 
           <div class="info-card reveal">
-            <h3>Оформление под задачу и бюджет</h3>
+            <p class="info-card-kicker">Индивидуальный подход</p>
+            <h3>Подберем оформление под площадку и формат мероприятия.</h3>
             <p>
-              Помогаем собрать флористику для свадеб, дней рождения, фотосессий, частных ужинов и брендовых съёмок.
+              Поможем собрать флористику под задачу и бюджет.
             </p>
             <button class="button button-primary" type="button" data-open-request="Оформление мероприятий">Оставить заявку</button>
           </div>
@@ -141,20 +146,19 @@
 
       <section class="section info-section" id="horeca">
         <div class="section-head reveal">
-          <p class="section-kicker">Для кафе и ресторанов</p>
+          <p class="section-kicker">Для кофеен, ресторанов и гостиниц</p>
           <div class="section-row">
-            <h2 class="section-title">Регулярное цветочное оформление для заведений</h2>
-            <p class="section-note">
-              Композиции для столов, входной зоны и барной стойки, а также регулярное обслуживание и обновление цветов.
-            </p>
+            <h2 class="section-title">Регулярное цветочное оформление там, где важен сервис</h2>
           </div>
         </div>
 
         <div class="info-layout info-layout-reverse">
           <div class="info-card reveal">
-            <h3>Флористика для интерьера и сервиса</h3>
+            <p class="info-card-kicker">Сервисное оформление</p>
+            <h3>Композиции для столов, зон рецепции и тд.</h3>
             <p>
-              Работаем с кафе, ресторанами, салонами и бутиками. Подбираем стиль оформления под интерьер и график обновления композиций.
+              Регулярное обслуживание и обновление цветов, возможность выполнения композиций из стабилизированных цветов
+              (свежесть цветка сохраняется до двух лет). Подбираем стиль оформления под ваш интерьер.
             </p>
             <button class="button button-primary" type="button" data-open-request="Оформление для кафе и ресторанов">Обсудить оформление</button>
           </div>
@@ -167,14 +171,21 @@
         </div>
       </section>
 
+      <section class="section" id="accessories">
+        <div class="section-head reveal">
+          <p class="section-kicker">Сопутствующие товары</p>
+          <div class="section-row">
+            <h2 class="section-title">Дополнения к букету и подарочные акценты</h2>
+          </div>
+        </div>
+        <div class="product-grid" id="accessoriesGrid"></div>
+      </section>
+
       <section class="section request-section" id="request">
         <div class="section-head reveal">
           <p class="section-kicker">Оставить заявку</p>
           <div class="section-row">
             <h2 class="section-title">Напишите, что вам нужно, и мы свяжемся с вами</h2>
-            <p class="section-note">
-              Форма подходит для индивидуальных букетов, оформления мероприятий и запросов от бизнеса.
-            </p>
           </div>
         </div>
 
@@ -204,8 +215,8 @@
             <h3>Быстрый контакт</h3>
             <p>Если удобнее, можно сразу написать в мессенджер:</p>
             <div class="messenger-links">
-              <a href="https://wa.me/79990000000" target="_blank" rel="noreferrer">WhatsApp</a>
               <a href="https://t.me/vetka_flowers" target="_blank" rel="noreferrer">Telegram</a>
+              <a href="https://web.max.ru/" target="_blank" rel="noreferrer">MAX</a>
             </div>
           </div>
         </div>
@@ -216,10 +227,12 @@
           <p class="section-kicker">О магазине</p>
           <div class="section-row">
             <h2 class="section-title">VETKA собирает букеты с вниманием к форме, цвету и подаче</h2>
-            <p class="section-note">
-              Мы работаем с готовыми композициями и индивидуальными заказами, подбираем букеты для личных поводов и оформляем пространства для бизнеса и событий.
-            </p>
           </div>
+        </div>
+        <div class="about-copy reveal">
+          <p class="section-text">
+            Мы работаем с готовыми композициями и индивидуальными заказами, подбираем букеты для личных поводов и оформляем пространства для бизнеса и событий.
+          </p>
         </div>
       </section>
 
@@ -228,7 +241,6 @@
           <p class="section-kicker">Контакты</p>
           <div class="section-row">
             <h2 class="section-title">Связаться с VETKA</h2>
-            <p class="section-note">Телефон, мессенджеры, адрес и режим работы в одном блоке.</p>
           </div>
         </div>
 
@@ -240,8 +252,8 @@
           <div class="contact-item">
             <span>Мессенджеры</span>
             <div class="messenger-links">
-              <a href="https://wa.me/79990000000" target="_blank" rel="noreferrer">WhatsApp</a>
               <a href="https://t.me/vetka_flowers" target="_blank" rel="noreferrer">Telegram</a>
+              <a href="https://web.max.ru/" target="_blank" rel="noreferrer">MAX</a>
             </div>
           </div>
           <div class="contact-item">
@@ -258,11 +270,14 @@
 
     <footer class="site-footer">
       <div>
-        <p class="footer-brand">VETKA</p>
-        <p class="footer-copy">Цветы это по любви</p>
+        <div class="footer-brand-block">
+          <p class="footer-brand">VETKA</p>
+          <span class="brand-line footer-brand-line"></span>
+          <p class="footer-copy">Цветы это по любви</p>
+        </div>
         <div class="messenger-links footer-messengers">
-          <a href="https://wa.me/79990000000" target="_blank" rel="noreferrer">WhatsApp</a>
           <a href="https://t.me/vetka_flowers" target="_blank" rel="noreferrer">Telegram</a>
+          <a href="https://web.max.ru/" target="_blank" rel="noreferrer">MAX</a>
         </div>
       </div>
       <div class="footer-links">

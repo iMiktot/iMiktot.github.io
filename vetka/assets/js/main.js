@@ -61,6 +61,7 @@ const navToggle = document.querySelector("[data-nav-toggle]");
 const nav = document.querySelector("[data-nav]");
 const readyGrid = document.getElementById("readyGrid");
 const customGrid = document.getElementById("customGrid");
+const accessoriesGrid = document.getElementById("accessoriesGrid");
 const modal = document.getElementById("actionModal");
 const paymentBlock = document.getElementById("paymentBlock");
 const modalKicker = document.getElementById("modalKicker");
@@ -75,6 +76,38 @@ const actionForm = document.getElementById("actionForm");
 const mainRequestForm = document.getElementById("mainRequestForm");
 const mainRequestSuccess = document.getElementById("mainRequestSuccess");
 const mainRequestReset = document.getElementById("mainRequestReset");
+const promoSlider = document.querySelector("[data-promo-slider]");
+
+const accessories = [
+  {
+    name: "Аромасвеча",
+    category: "Декор для дома",
+    description: "Спокойный акцент к букету для домашней атмосферы и подарочного набора.",
+    price: "1 200 ₽",
+    image: "v2/jBQRFZn4yEjS_v8ZxUCUIiWGSYsTxEcvdEsZ3e9zkO3usEPKlzQVcSNc7NHitXM2ZMM8-00TzTiINW7ekrD275xh.jpg"
+  },
+  {
+    name: "Открытка ручной подписи",
+    category: "Подарочное дополнение",
+    description: "Лаконичное дополнение к букету с вашим текстом и аккуратной подачей.",
+    price: "250 ₽",
+    image: "v2/5OU6T_l-HO6Q6BwFkFO8azgr-cfieEs6B9HcWivSUvjQUNNBHW60fu6Sw9kr3yX9H8Ut_-sOHCwuOKZXqxpMa4JX.jpg"
+  },
+  {
+    name: "Ваза для букета",
+    category: "Для композиции",
+    description: "Универсальная прозрачная ваза, чтобы подарок сразу был готов для дома или офиса.",
+    price: "1 900 ₽",
+    image: "v2/AiMFOh7n-rro5juauJVM_LfyWeKYtBSBAlott6jxyqfntOgs4N4WKsKCt0cga6uYMINcXipsIwVoHiYE7C09uX44.jpg"
+  },
+  {
+    name: "Подарочный набор",
+    category: "Готовое дополнение",
+    description: "Свеча, открытка и лента в единой упаковке к букету или композиции.",
+    price: "2 400 ₽",
+    image: "v2/Ff8ZQvKCCAKR6_QIhBgxGuF8vYyMXRbeQWUoXc3HVlD78Rj9Kf6Ag9sPoiEyFmbeQvc0NZBjuYWTXWr4AKlv85Zl.jpg"
+  }
+];
 
 function renderReadyBouquets() {
   readyGrid.innerHTML = readyBouquets
@@ -138,6 +171,33 @@ function renderCustomBouquets() {
     .join("");
 }
 
+function renderAccessories() {
+  accessoriesGrid.innerHTML = accessories
+    .map(
+      (item, index) => `
+        <article class="product-card reveal">
+          <div class="product-media">
+            <img src="${item.image}" alt="${item.name}">
+          </div>
+          <div class="product-body">
+            <div>
+              <p class="product-category">${item.category}</p>
+              <h3 class="product-name">${item.name}</h3>
+            </div>
+            <p class="product-description">${item.description}</p>
+            <div class="product-meta">
+              <strong class="product-price">${item.price}</strong>
+            </div>
+            <div class="product-actions">
+              <button class="button button-primary" type="button" data-open-accessory="${index}">Купить</button>
+            </div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
 function lockBody(locked) {
   document.body.classList.toggle("is-locked", locked);
 }
@@ -181,8 +241,8 @@ function openBuyModal(index) {
     title: bouquet.name,
     subtitle: "Заполните форму для покупки готового букета. Менеджер свяжется с вами для подтверждения.",
     submitLabel: "Отправить заказ",
-    messengerLabel: "Открыть WhatsApp",
-    messengerHref: "https://wa.me/79990000000",
+    messengerLabel: "Открыть Telegram",
+    messengerHref: "https://t.me/vetka_flowers",
     showPayment: true,
     product: bouquet.name
   });
@@ -199,7 +259,7 @@ function openCustomModal(index) {
     type: "custom",
     kicker: "Заказать похожий",
     title: bouquet.name,
-    subtitle: "Оставьте заявку или перейдите в Telegram / WhatsApp для быстрого обсуждения деталей.",
+    subtitle: "Оставьте заявку или перейдите в Telegram / MAX для быстрого обсуждения деталей.",
     submitLabel: "Отправить заявку",
     messengerLabel: "Открыть Telegram",
     messengerHref: "https://t.me/vetka_flowers",
@@ -215,10 +275,30 @@ function openRequestModal(subject) {
     title: subject,
     subtitle: "Заполните форму, и менеджер свяжется с вами для обсуждения деталей.",
     submitLabel: "Отправить заявку",
-    messengerLabel: "Открыть WhatsApp",
-    messengerHref: "https://wa.me/79990000000",
+    messengerLabel: "Открыть MAX",
+    messengerHref: "https://web.max.ru/",
     showPayment: false,
     product: subject
+  });
+}
+
+function openAccessoryModal(index) {
+  const item = accessories[index];
+
+  if (!item) {
+    return;
+  }
+
+  openModal({
+    type: "buy",
+    kicker: "Попап Купить",
+    title: item.name,
+    subtitle: "Заполните форму для покупки сопутствующего товара. Менеджер свяжется с вами для подтверждения.",
+    submitLabel: "Отправить заказ",
+    messengerLabel: "Открыть Telegram",
+    messengerHref: "https://t.me/vetka_flowers",
+    showPayment: true,
+    product: item.name
   });
 }
 
@@ -308,6 +388,7 @@ function initActions() {
   document.addEventListener("click", (event) => {
     const buyButton = event.target.closest("[data-open-buy]");
     const customButton = event.target.closest("[data-open-custom]");
+    const accessoryButton = event.target.closest("[data-open-accessory]");
     const requestButton = event.target.closest("[data-open-request]");
     const closeButton = event.target.closest("[data-close-modal]");
 
@@ -317,6 +398,10 @@ function initActions() {
 
     if (customButton) {
       openCustomModal(Number(customButton.dataset.openCustom));
+    }
+
+    if (accessoryButton) {
+      openAccessoryModal(Number(accessoryButton.dataset.openAccessory));
     }
 
     if (requestButton) {
@@ -335,6 +420,60 @@ function initActions() {
   });
 }
 
+function initPromoSlider() {
+  if (!promoSlider) {
+    return;
+  }
+
+  const slides = Array.from(promoSlider.querySelectorAll(".hero-banner"));
+  const dotsHost = promoSlider.querySelector("[data-promo-dots]");
+  const pageSize = 2;
+  const pages = [];
+  let activePage = 0;
+  let timerId = null;
+
+  for (let i = 0; i < slides.length; i += pageSize) {
+    pages.push(slides.slice(i, i + pageSize));
+  }
+
+  function setActive(pageIndex) {
+    activePage = pageIndex;
+    slides.forEach((slide, slideIndex) => {
+      const isVisible = pages[pageIndex].includes(slide);
+      slide.classList.toggle("is-active", isVisible);
+    });
+
+    Array.from(dotsHost.children).forEach((dot, dotPageIndex) => {
+      dot.classList.toggle("is-active", dotPageIndex === pageIndex);
+    });
+  }
+
+  pages.forEach((_, pageIndex) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Показать предложения ${pageIndex + 1}`);
+    dot.addEventListener("click", () => {
+      setActive(pageIndex);
+      restart();
+    });
+    dotsHost.appendChild(dot);
+  });
+
+  function restart() {
+    window.clearInterval(timerId);
+    if (pages.length <= 1) {
+      return;
+    }
+
+    timerId = window.setInterval(() => {
+      setActive((activePage + 1) % pages.length);
+    }, 30000);
+  }
+
+  setActive(0);
+  restart();
+}
+
 function setYear() {
   const slot = document.querySelector("[data-year]");
   if (slot) {
@@ -344,8 +483,10 @@ function setYear() {
 
 renderReadyBouquets();
 renderCustomBouquets();
+renderAccessories();
 initNav();
 initReveal();
 initForms();
 initActions();
+initPromoSlider();
 setYear();
