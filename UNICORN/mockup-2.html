@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Макет 2 | Арт-студия Unicorn</title>
+  <meta
+    name="description"
+    content="Визуальный макет оптовой страницы Арт-студии Unicorn: собственное производство, СТМ, контрактное производство и ассортимент для оптовых клиентов."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles/mockup-2.css">
+</head>
+<body>
+  <div class="atelier-shell">
+    <div class="atelier-art" aria-hidden="true">
+      <svg class="atelier-art__map atelier-art__map--hero" viewBox="0 0 360 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 74L88 24H194L318 58L338 148L284 238H150L40 214L20 74Z" stroke="currentColor"/>
+        <path d="M88 24L112 112L72 212" stroke="currentColor"/>
+        <path d="M112 112L206 96L284 238" stroke="currentColor"/>
+        <path d="M206 96L318 58" stroke="currentColor"/>
+        <text x="60" y="90">01</text>
+        <text x="146" y="112">07</text>
+        <text x="254" y="124">12</text>
+      </svg>
+      <svg class="atelier-art__map atelier-art__map--catalog" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 40L82 18L220 28L260 94L238 178L168 204H74L18 144V40Z" stroke="currentColor"/>
+        <path d="M82 18L98 94L74 204" stroke="currentColor"/>
+        <path d="M98 94L182 78L238 178" stroke="currentColor"/>
+        <path d="M182 78L260 94" stroke="currentColor"/>
+        <text x="44" y="70">03</text>
+        <text x="128" y="112">09</text>
+      </svg>
+      <svg class="atelier-art__map atelier-art__map--lead" viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 56L82 20H198L274 62L286 144L230 220H104L34 182L22 56Z" stroke="currentColor"/>
+        <path d="M82 20L110 118L64 194" stroke="currentColor"/>
+        <path d="M110 118L194 88L230 220" stroke="currentColor"/>
+        <text x="56" y="94">05</text>
+        <text x="176" y="116">11</text>
+      </svg>
+      <svg class="atelier-art__map atelier-art__map--proof" viewBox="0 0 180 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 34L56 14H126L164 44L154 102L106 122H50L16 90V34Z" stroke="currentColor"/>
+        <path d="M56 14L70 68L50 122" stroke="currentColor"/>
+        <path d="M70 68L122 56L154 102" stroke="currentColor"/>
+        <text x="38" y="56">02</text>
+        <text x="108" y="72">08</text>
+      </svg>
+      <svg class="atelier-art__map atelier-art__map--kit" viewBox="0 0 170 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 28L54 10H118L156 36L146 96L98 118H42L14 82V28Z" stroke="currentColor"/>
+        <path d="M54 10L66 60L42 118" stroke="currentColor"/>
+        <path d="M66 60L120 48L146 96" stroke="currentColor"/>
+        <text x="34" y="48">04</text>
+        <text x="98" y="74">10</text>
+      </svg>
+    </div>
+
+    <header class="atelier-header" id="top">
+      <div class="atelier-container atelier-header__inner">
+        <a class="atelier-brand" href="#top" aria-label="Арт-студия Unicorn">
+          <img src="assets/unicorn-logo.png" alt="Логотип Арт-студии Unicorn">
+        </a>
+
+        <button class="atelier-toggle" type="button" aria-expanded="false" aria-controls="atelier-nav">
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="atelier-nav" id="atelier-nav">
+          <a href="#about">Преимущества</a>
+          <a href="#catalog">Категории</a>
+          <a href="#formats">Сотрудничество</a>
+        </nav>
+
+        <div class="atelier-header__actions">
+          <a class="atelier-header__link" href="index.html">Макет 1</a>
+          <a class="atelier-button atelier-button--dark" href="#lead">Получить предложение</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="atelier-main">
+      <section class="atelier-hero">
+        <div class="atelier-container atelier-hero__grid">
+          <div class="atelier-hero__copy reveal">
+            <p class="atelier-kicker">Оптовое производство для маркетплейсов, магазинов и брендов</p>
+            <h1>Картины по номерам, алмазная мозаика и арт-товары собственного производства для опта и СТМ</h1>
+            <p class="atelier-hero__lead">
+              Арт-студия Unicorn много лет производит картины по номерам, алмазную мозаику,
+              интерьерные картины, детские наборы, холсты на подрамниках, краски и подрамники.
+            </p>
+            <p class="atelier-hero__sublead">
+              Оптовым клиентам предлагаем готовый ассортимент, выпуск под брендом заказчика,
+              контрактное производство и подготовку продукции под формат продаж и отгрузки.
+            </p>
+
+            <div class="atelier-hero__actions">
+              <a class="atelier-button atelier-button--dark" href="#lead">Оставить заявку</a>
+              <a class="atelier-button atelier-button--ghost" href="#catalog">Посмотреть ассортимент</a>
+            </div>
+          </div>
+
+          <div class="atelier-hero__panel reveal reveal--delay-1">
+            <article class="atelier-hero-card atelier-hero-card--dashboard">
+              <div class="atelier-hero-card__metrics">
+                <article class="atelier-metric">
+                  <strong>20 000+</strong>
+                  <span>позиций</span>
+                </article>
+                <article class="atelier-metric">
+                  <strong>от 100</strong>
+                  <span>шт. на артикул</span>
+                </article>
+                <article class="atelier-metric">
+                  <strong>2-5</strong>
+                  <span>дней на производство</span>
+                </article>
+                <article class="atelier-metric">
+                  <strong>Екб</strong>
+                  <span>производство и склад</span>
+                </article>
+              </div>
+
+              <div class="atelier-hero-card__formats">
+                <article class="atelier-format-chip">
+                  <span class="atelier-format-chip__icon">01</span>
+                  <strong>Готовый ассортимент</strong>
+                </article>
+                <article class="atelier-format-chip">
+                  <span class="atelier-format-chip__icon">02</span>
+                  <strong>СТМ</strong>
+                </article>
+                <article class="atelier-format-chip">
+                  <span class="atelier-format-chip__icon">03</span>
+                  <strong>Контрактное производство</strong>
+                </article>
+                <article class="atelier-format-chip">
+                  <span class="atelier-format-chip__icon">04</span>
+                  <strong>Фулфилмент</strong>
+                </article>
+              </div>
+
+              <div class="atelier-hero-card__segments">
+                <span>Маркетплейсы</span>
+                <span>Хобби-магазины</span>
+                <span>Розничные сети</span>
+                <span>Корпоративные клиенты</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="atelier-section" id="about">
+        <div class="atelier-container">
+          <div class="atelier-heading reveal">
+            <p class="atelier-kicker">Почему Unicorn</p>
+            <h2>Почему оптовые клиенты выбирают Unicorn</h2>
+          </div>
+
+          <div class="atelier-proof-grid">
+            <article class="atelier-proof-card reveal">
+              <span>01</span>
+              <h3>Собственное производство</h3>
+              <p>Картины по номерам, алмазная мозаика, холсты, подрамники и акриловые краски производятся внутри компании.</p>
+            </article>
+            <article class="atelier-proof-card reveal reveal--delay-1">
+              <span>02</span>
+              <h3>Рабочие категории с реальным спросом</h3>
+              <p>Продукция уже продаётся в рознице и на маркетплейсах, поэтому оптовое направление строится на понятных и востребованных категориях.</p>
+            </article>
+            <article class="atelier-proof-card reveal reveal--delay-2">
+              <span>03</span>
+              <h3>Гибкие условия под ваш бренд</h3>
+              <p>Можно закупать готовые товары Unicorn, запускать СТМ, менять упаковку и собирать партии под нужный формат продаж.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="atelier-section atelier-section--catalog" id="catalog">
+        <div class="atelier-container">
+          <div class="atelier-heading atelier-heading--split reveal">
+            <div>
+              <p class="atelier-kicker">Ассортимент для оптовых закупок</p>
+              <h2>Готовые категории для продажи под брендом Unicorn или под брендом заказчика</h2>
+            </div>
+            <p class="atelier-heading__text">
+              В ассортимент входят готовые линейки Unicorn и позиции собственного производства,
+              которые можно закупать оптом, выпускать под своим брендом и масштабировать в отдельные товарные направления.
+            </p>
+          </div>
+
+          <div class="atelier-catalog-grid">
+            <article class="atelier-catalog-card atelier-catalog-card--intro reveal">
+              <p class="atelier-catalog-card__eyebrow">Основные категории</p>
+              <h3>Unicorn производит ключевые категории для творчества, подарочного сегмента и маркетплейсов</h3>
+              <ul class="atelier-category-list">
+                <li>Картины по номерам и производство по фото клиента</li>
+                <li>Детские серии: картины по номерам, алмазка, наборы для раскраски</li>
+                <li>Интерьерные картины и подарочные решения</li>
+                <li>Материалы для творчества: холсты, подрамники, краски</li>
+              </ul>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--text reveal reveal--delay-1">
+              <span>01</span>
+              <h3>Картины по номерам</h3>
+              <p>Готовые сюжеты, серийные линейки, производство по фото клиента и выпуск под брендом заказчика.</p>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--text reveal reveal--delay-2">
+              <span>02</span>
+              <h3>Детские серии</h3>
+              <p>Понятная категория для магазинов, маркетплейсов и подарочного сегмента с хорошим потенциалом для серийных линеек.</p>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--photo atelier-catalog-card--tall reveal">
+              <img src="assets/diamond-mountains.webp" alt="Алмазная мозаика Unicorn">
+              <div class="atelier-catalog-card__content">
+                <span>03</span>
+                <h3>Алмазная мозаика</h3>
+                <p>Готовая категория для розницы и маркетплейсов: наборы на подрамнике с полной выкладкой и понятной комплектацией.</p>
+              </div>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--wide reveal">
+              <div class="atelier-catalog-card__content">
+                <span>04</span>
+                <h3>Интерьерные картины</h3>
+                <p>Серийные и индивидуальные решения для интерьерного, подарочного и корпоративного направления.</p>
+              </div>
+              <img src="1-2.png" alt="Комплект Unicorn">
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--photo reveal reveal--delay-1">
+              <img src="assets/acrylic-paints.webp" alt="Акриловые краски Unicorn">
+              <div class="atelier-catalog-card__content">
+                <span>05</span>
+                <h3>Акриловые краски</h3>
+                <p>Собственное производство акриловых красок для наборов Unicorn и отдельной оптовой продажи.</p>
+              </div>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--photo reveal reveal--delay-2">
+              <img src="assets/canvas-white.webp" alt="Белые холсты на подрамнике Unicorn">
+              <div class="atelier-catalog-card__content">
+                <span>06</span>
+                <h3>Белые холсты</h3>
+                <p>Мелкозернистые холсты на подрамнике с акриловым грунтом для акрила, масла и темперы.</p>
+              </div>
+            </article>
+
+            <article class="atelier-catalog-card atelier-catalog-card--photo reveal reveal--delay-3">
+              <img src="assets/canvas-black.webp" alt="Черные холсты на подрамнике Unicorn">
+              <div class="atelier-catalog-card__content">
+                <span>07</span>
+                <h3>Черные холсты</h3>
+                <p>Отдельная категория для декоративной живописи, контрастных техник и расширения ассортимента магазина.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="atelier-section" id="formats">
+        <div class="atelier-container">
+          <div class="atelier-heading reveal">
+            <p class="atelier-kicker">Форматы сотрудничества</p>
+            <h2>Форматы сотрудничества под разные задачи и модели продаж</h2>
+          </div>
+
+          <div class="atelier-format-list">
+            <article class="atelier-format-item reveal">
+              <span>01</span>
+              <div>
+                <h3>Готовый ассортимент Unicorn</h3>
+                <p>Оптовая закупка готовых категорий для дальнейшей продажи в магазине, сети или на маркетплейсах.</p>
+              </div>
+            </article>
+            <article class="atelier-format-item reveal reveal--delay-1">
+              <span>02</span>
+              <div>
+                <h3>СТМ и выпуск под брендом заказчика</h3>
+                <p>Адаптация упаковки, комплектации и выпуск продукции под вашим брендом.</p>
+              </div>
+            </article>
+            <article class="atelier-format-item reveal reveal--delay-2">
+              <span>03</span>
+              <div>
+                <h3>Контрактное производство</h3>
+                <p>Изготовление партий по вашему техническому заданию, с нужным комплектом и условиями поставки.</p>
+              </div>
+            </article>
+            <article class="atelier-format-item reveal reveal--delay-3">
+              <span>04</span>
+              <div>
+                <h3>Фулфилмент и индивидуальные решения</h3>
+                <p>Комплектация, упаковка, подготовка к отгрузке и доработка продукта под задачу клиента.</p>
+              </div>
+            </article>
+          </div>
+
+          <article class="atelier-client-strip reveal reveal--delay-1">
+            <div class="atelier-client-strip__copy">
+              <p class="atelier-hero-card__eyebrow">Кому подходит</p>
+              <h3>Для маркетплейсов, магазинов, сетей и брендов, которым нужен реальный производитель</h3>
+              <div class="atelier-hero-card__chips">
+                <span>Маркетплейсы</span>
+                <span>Хобби-магазины</span>
+                <span>Розничные сети</span>
+                <span>Корпоративные клиенты</span>
+              </div>
+            </div>
+
+            <svg class="atelier-hero-card__map atelier-client-strip__map" viewBox="0 0 210 170" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 56L74 18H146L186 50L176 118L118 150H54L24 112V56Z" stroke="currentColor"/>
+              <path d="M76 20L90 76L54 148" stroke="currentColor"/>
+              <path d="M90 76H176" stroke="currentColor"/>
+              <path d="M90 76L118 148" stroke="currentColor"/>
+              <text x="44" y="78">06</text>
+              <text x="106" y="70">12</text>
+            </svg>
+          </article>
+        </div>
+      </section>
+
+      <section class="atelier-section atelier-section--kit">
+        <div class="atelier-container atelier-kit">
+          <div class="atelier-kit__visual reveal">
+            <article class="atelier-kit__photo atelier-kit__photo--large">
+              <img src="1-3.png" alt="Упаковка Unicorn">
+            </article>
+            <article class="atelier-kit__photo atelier-kit__photo--small">
+              <img src="1-1.png" alt="Картина по номерам Unicorn">
+            </article>
+          </div>
+
+          <div class="atelier-kit__copy reveal reveal--delay-1">
+            <p class="atelier-kicker">Стандартный комплект</p>
+            <h2>В базовом комплекте уже есть всё для готового продукта</h2>
+            <ul class="atelier-kit__list">
+              <li>Холст с грунтом для акриловых красок, уже закреплённый на подрамнике</li>
+              <li>Подрамник собственного производства, ровный и аккуратный</li>
+              <li>Свежие акриловые краски собственного производства</li>
+              <li>Кисти, инструкция, крепления и акриловый лак</li>
+              <li>По согласованию: брендирование, другая упаковка и адаптация комплекта под задачу клиента</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="atelier-section atelier-section--lead" id="lead">
+        <div class="atelier-container atelier-lead">
+          <div class="atelier-lead__copy reveal">
+            <p class="atelier-kicker">Связаться</p>
+            <h2>Подготовим оптовое предложение под ваш формат продаж</h2>
+            <p>
+              Оставьте контакты, и мы подберём категории, рассчитаем партию
+              и предложим формат сотрудничества: готовый ассортимент, СТМ или контрактное производство.
+            </p>
+            <div class="atelier-lead__points">
+              <article>
+                <strong>Что обсудим</strong>
+                <span>Ассортимент, объёмы, упаковку, брендирование, сроки производства и отгрузку.</span>
+              </article>
+              <article>
+                <strong>Что получите</strong>
+                <span>Оптовое предложение под ваш формат продаж, объём закупки и задачу.</span>
+              </article>
+            </div>
+          </div>
+
+          <form class="atelier-form reveal reveal--delay-2" data-demo-form>
+            <label>
+              <span>Компания / контактное лицо</span>
+              <input type="text" name="name" placeholder="Название компании или ваше имя" required>
+            </label>
+
+            <label>
+              <span>Телефон для связи</span>
+              <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="hello@company.ru">
+            </label>
+
+            <label>
+              <span>Комментарий</span>
+              <textarea name="message" placeholder="Какие категории, объёмы и формат сотрудничества вас интересуют?"></textarea>
+            </label>
+
+            <button class="atelier-button atelier-button--dark atelier-button--full" type="submit">Получить оптовое предложение</button>
+            <p class="atelier-form__success" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="atelier-footer">
+      <div class="atelier-container atelier-footer__inner">
+        <div>
+          <strong>Арт-студия Unicorn</strong>
+          <span>Екатеринбург, ул. Окружная 3/1</span>
+        </div>
+        <div class="atelier-footer__links">
+          <a href="index.html">Открыть макет 1</a>
+          <a href="#top">Наверх</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="atelier-credit">
+      <a href="https://itsrkey.ru" target="_blank" rel="noopener noreferrer">Сайт разработан - ITSRKEY.RU</a>
+    </div>
+  </div>
+
+  <script src="scripts/mockup-2.js"></script>
+</body>
+</html>
